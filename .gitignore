@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Claude Design canvas drafts (generated, not part of the site)
+*.dc.html
+support.js
+.thumbnail
+
+# Logs / deps
+node_modules/
+*.log

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Framestack logo: two stacked frames">
+  <rect width="512" height="512" fill="#FAFAFA"/>
+  <rect x="76" y="201" width="235" height="235" rx="62.5" fill="none" stroke="#17181B" stroke-width="37.5"/>
+  <rect x="151" y="76" width="285" height="285" rx="50" fill="#17181B" stroke="#FAFAFA" stroke-width="37.5"/>
+</svg>

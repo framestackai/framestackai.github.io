@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Source AI Agent Builder for Python — Framestack</title>
+<meta name="description" content="Open-source, self-hosted visual AI agent builder for Python. Code is the source of truth, and a node turns green only when your tests prove it.">
+<link rel="canonical" href="https://framestackai.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#FAFAFA">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Framestack">
+<meta property="og:title" content="Open Source AI Agent Builder for Python — Framestack">
+<meta property="og:description" content="Visual AI agent builder for Python where code is the source of truth. A node turns green only when your own tests run through it and pass. Open source, MIT.">
+<meta property="og:url" content="https://framestackai.com/">
+<meta property="og:image" content="https://framestackai.com/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Framestack AI Builder canvas: a Python node graph with a proven node highlighted">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Open Source AI Agent Builder for Python — Framestack">
+<meta name="twitter:description" content="Visual AI agent builder for Python where code is the source of truth. A node turns green only when your tests prove it. Open source, MIT.">
+<meta name="twitter:image" content="https://framestackai.com/assets/img/og-cover.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<style>/* Framestack design system — extracted from FramestackAI Site.dc.html */
+:root{
+  --bg:#FAFAFA; --card:#FFFFFF; --subtle:#F4F5F6;
+  --ink:#17181B; --t2:#4A4D53; --t3:#55585E; --t4:#6E7176; --muted:#9CA0A6; --faint:#B4B8C0;
+  --b1:#E2E4E7; --b2:#EDEEF0; --b3:#D6D9DD; --b4:#E8EAEC;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:'Onest','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --maxw:1200px; --pad:clamp(20px,4vw,40px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{max-width:100%;display:block}
+a{color:var(--ink);text-decoration:none}
+a:hover{color:var(--t4)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  color:var(--t4);border-bottom:1px solid var(--b3);padding-bottom:12px;text-transform:uppercase}
+.lead{font-size:clamp(17px,2.2vw,20px);line-height:1.5;color:var(--t3);text-wrap:pretty}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(250,250,250,.9);
+  backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--b1)}
+.header-inner{display:flex;align-items:center;gap:clamp(22px,3vw,44px);height:56px}
+.brand{display:flex;align-items:center;gap:9px;flex:none}
+.brand span{font-size:19px;font-weight:700;letter-spacing:-.03em}
+.nav{display:flex;align-items:center;gap:28px;font-size:14px;color:var(--t2)}
+.nav a{color:var(--t2)}
+.nav a:hover{color:var(--ink)}
+.spacer{flex:1}
+.dropdown{position:relative}
+.dropdown>button{display:flex;align-items:center;gap:6px;cursor:pointer;height:56px;
+  background:none;border:0;font:inherit;color:var(--t2);padding:0}
+.dropdown>button .chev{font-size:9px;color:var(--muted)}
+.dropdown-panel{position:absolute;top:52px;left:-16px;width:320px;background:#fff;
+  border:1px solid var(--b1);border-radius:8px;padding:8px;box-shadow:0 12px 32px rgba(23,24,27,.08);
+  opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s}
+.dropdown[data-open="true"] .dropdown-panel{opacity:1;visibility:visible;transform:none}
+.dd-item{display:flex;gap:12px;padding:12px;border-radius:6px}
+.dd-item:hover{background:var(--subtle)}
+.dd-ico{width:30px;height:30px;border:1px solid var(--b3);border-radius:5px;flex:none;
+  display:flex;align-items:center;justify-content:center}
+.dd-ico i{width:8px;height:8px;border:1.5px solid var(--ink);display:block}
+.dd-title{font-size:13.5px;font-weight:600;color:var(--ink)}
+.dd-desc{font-size:12.5px;color:var(--t4);margin-top:3px;line-height:1.45}
+.dd-more{padding:10px 12px 6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  color:var(--muted);border-top:1px solid var(--b2);margin-top:4px}
+.header-cta{display:flex;align-items:center;gap:18px;font-size:14px}
+
+/* buttons */
+.btn{display:inline-block;border-radius:999px;font-size:14.5px;font-weight:500;cursor:pointer;
+  transition:transform .16s,box-shadow .16s,background .16s,border-color .16s;font-family:inherit}
+.btn-primary{background:var(--ink);color:var(--bg);padding:14px 22px;border:1px solid var(--ink)}
+.btn-primary:hover{background:#2E3035;color:var(--bg)}
+.btn-outline{background:#fff;color:var(--ink);border:1px solid var(--b3);padding:13px 22px}
+.btn-outline:hover{border-color:var(--ink)}
+.btn-sm{padding:9px 18px;font-size:14px}
+
+/* hamburger */
+.burger{display:none;width:44px;height:44px;margin-right:-10px;flex-direction:column;
+  align-items:center;justify-content:center;gap:5px;cursor:pointer;flex:none;background:none;border:0}
+.burger i{width:22px;height:1.5px;background:var(--ink);display:block}
+.mobile-nav{display:none;border-top:1px solid var(--b1);background:var(--bg);padding:8px var(--pad) 32px}
+.mobile-nav.open{display:block}
+.mobile-nav a,.mobile-nav .m-row{display:flex;align-items:center;padding:18px 0;
+  border-bottom:1px solid var(--b2);font-size:18px;min-height:56px;color:var(--ink)}
+.mobile-nav .m-sub{font-size:15px;color:var(--muted);margin-top:4px}
+
+/* sections */
+.section{padding-top:clamp(72px,9vw,120px);padding-bottom:clamp(80px,10vw,128px)}
+.section--tight{padding-top:clamp(64px,9vw,120px);padding-bottom:clamp(36px,5vw,52px)}
+.section--white{background:#fff;border-top:1px solid var(--b1)}
+.section--subtle{background:var(--subtle);border-top:1px solid var(--b1)}
+.center{text-align:center}
+.h1{font-size:clamp(38px,7.6vw,76px);line-height:1.02;letter-spacing:-.032em;font-weight:600;
+  max-width:920px;margin-inline:auto;text-wrap:balance}
+.h1--left{margin-inline:0;text-align:left}
+.h2{font-size:clamp(30px,4.6vw,48px);line-height:1.07;letter-spacing:-.032em;font-weight:600;text-wrap:balance}
+.h2--center{margin-inline:auto;text-align:center;max-width:760px}
+.h3{font-size:clamp(22px,3vw,31px);font-weight:500;letter-spacing:-.025em;line-height:1.12}
+
+/* cards */
+.card{border:1px solid rgba(23,24,27,.09);border-radius:22px;background:#fff;overflow:hidden;
+  box-shadow:0 1px 2px rgba(23,24,27,.03),0 24px 54px -32px rgba(23,24,27,.26);
+  transition:transform .2s,box-shadow .2s}
+.card--lift:hover{transform:translateY(-4px);box-shadow:0 30px 64px -30px rgba(23,24,27,.3)}
+.card-pad{padding:clamp(24px,3.4vw,42px)}
+.card-sm{border:1px solid var(--b1);border-radius:18px;background:#fff;padding:clamp(24px,3vw,32px);
+  transition:transform .18s,box-shadow .18s}
+.card-sm:hover{transform:translateY(-3px);box-shadow:0 20px 44px -24px rgba(23,24,27,.28)}
+.grid{display:grid;gap:24px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.muted-p{font-size:16px;line-height:1.6;color:var(--t2);margin-top:14px}
+
+/* browser frame (screenshot placeholder) */
+.frame{border:1px solid rgba(23,24,27,.09);border-radius:22px;background:#fff;overflow:hidden;
+  box-shadow:0 2px 4px rgba(23,24,27,.03),0 30px 70px -34px rgba(23,24,27,.34)}
+.frame-bar{height:38px;border-bottom:1px solid var(--b2);display:flex;align-items:center;gap:14px;padding:0 14px}
+.frame-dots{display:flex;gap:6px;flex:none}
+.frame-dots i{width:8px;height:8px;border-radius:50%;background:var(--b1);display:block}
+.frame-path{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frame-run{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--b1);border-radius:4px;padding:3px 8px;flex:none}
+.canvas{position:relative;min-height:420px;background-image:radial-gradient(#E6E8EA 1px,transparent 1px);
+  background-size:22px 22px;background-position:11px 11px;overflow-x:auto}
+.canvas-inner{position:relative;min-width:764px;height:100%;min-height:420px}
+.ph-note{position:absolute;right:16px;bottom:14px;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+figure{margin:0}
+.shot{width:100%;height:auto;display:block}
+
+/* node card (canvas + generic) */
+.node{background:#fff;border:1px solid var(--b3);border-radius:7px;box-shadow:0 2px 6px rgba(23,24,27,.05)}
+.node--active{border:1.5px solid var(--ink);box-shadow:0 6px 18px rgba(23,24,27,.09)}
+.node-head{padding:9px 11px;border-bottom:1px solid var(--b2);display:flex;align-items:center;gap:7px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--faint);flex:none}
+.dot--ink{background:var(--ink)}
+.dot--hollow{background:transparent;border:1px solid var(--faint)}
+.node-name{font-family:var(--mono);font-size:11px;color:var(--ink)}
+.node-meta{font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:auto}
+.node-body{padding:11px;display:flex;flex-direction:column;gap:6px}
+.bar{height:5px;border-radius:3px;background:var(--b2)}
+
+/* proof state legend */
+.states{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));margin-top:36px}
+.state-card{border:1px solid var(--b1);border-radius:14px;background:#fff;padding:20px}
+.state-card--skip{border-style:dashed}
+.state-tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:14px;text-transform:uppercase}
+.state-desc{font-size:14px;line-height:1.55;color:var(--t2);margin-top:8px}
+
+/* bullets */
+.bullets{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.bullets div{display:flex;gap:12px;align-items:baseline;font-size:15px;color:var(--t2)}
+.bullets i{width:5px;height:5px;background:var(--ink);flex:none;transform:translateY(-3px);display:block}
+
+/* code block */
+.code{border:1px solid var(--b1);border-radius:18px;background:#fff;overflow:hidden;min-width:0}
+.code-bar{height:34px;border-bottom:1px solid var(--b2);display:flex;align-items:center;padding:0 14px;
+  font-family:var(--mono);font-size:11px;color:var(--muted)}
+.code pre{margin:0;padding:22px;font-family:var(--mono);font-size:13px;line-height:1.75;color:var(--t2);
+  white-space:pre;overflow-x:auto}
+.code .cm{color:var(--muted)}
+
+/* comparison table */
+.table-wrap{margin-top:44px;overflow-x:auto;border:1px solid var(--b1);border-radius:18px;background:#fff}
+table.cmp{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
+.cmp caption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cmp th,.cmp td{text-align:left;padding:18px 22px;border-bottom:1px solid var(--b2);vertical-align:top;line-height:1.5}
+.cmp thead th{font-size:13px;font-family:var(--mono);letter-spacing:.04em;color:var(--muted);text-transform:uppercase;font-weight:500}
+.cmp tbody th{font-weight:600;color:var(--ink);width:210px}
+.cmp td.them{color:var(--t4)}
+.cmp td.us{color:var(--ink);background:#fff}
+.cmp thead th.us,.cmp tbody td.us{background:var(--subtle)}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:0}
+
+/* families / node kinds list */
+.rows{margin-top:40px;border-top:1px solid var(--b1)}
+.row{display:flex;flex-wrap:wrap;gap:8px 40px;padding:26px 0;border-bottom:1px solid var(--b2)}
+.row-name{flex:0 0 220px;font-family:var(--mono);font-size:13px;color:var(--ink)}
+.row-desc{flex:1 1 280px;font-size:15px;line-height:1.55;color:var(--t4)}
+.row-kinds{flex-basis:100%;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:2px}
+
+/* hex chips */
+.hexes{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,18px);margin-top:52px}
+.hex{width:104px;min-height:104px;background:var(--subtle);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;
+  justify-content:center;padding:0 12px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--t2)}
+
+/* FAQ */
+.faq{margin-top:44px;border-top:1px solid var(--b1)}
+.faq details{border-bottom:1px solid var(--b2)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;
+  gap:24px;font-size:clamp(17px,2vw,19px);font-weight:500;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .mk{font-size:16px;color:var(--muted);flex:none;transition:transform .2s}
+.faq details[open] summary .mk{transform:rotate(45deg)}
+.faq .ans{padding:0 0 26px;font-size:16px;line-height:1.6;color:var(--t2);max-width:760px}
+
+/* CTA strip */
+.cta{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* hero actions */
+.hero-actions{display:flex;gap:12px;margin-top:40px;align-items:center;justify-content:center;flex-wrap:wrap}
+.hero-note{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+/* split */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));
+  gap:clamp(36px,6vw,80px);align-items:center}
+
+/* footer */
+.site-footer{border-top:1px solid var(--b1);background:var(--bg)}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:36px;
+  padding-top:clamp(56px,6vw,76px);padding-bottom:clamp(56px,6vw,76px)}
+.footer-col{display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:var(--t4)}
+.footer-col a{color:var(--t4)}
+.footer-col a:hover{color:var(--ink)}
+.footer-head{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+.footer-brand-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:16px}
+.footer-copy{font-family:var(--mono);font-size:11px;color:var(--faint);padding-bottom:40px}
+
+/* utilities */
+.stack-sm>*+*{margin-top:12px}
+.mt-lead{margin-top:26px}
+.mt-30{margin-top:30px}
+.mt-20{margin-top:20px}
+.maxw-640{max-width:640px}
+.maxw-560{max-width:560px}
+.eyebrow-wrap{margin-bottom:0}
+
+/* responsive: replace JS wide/narrow */
+@media (max-width:899px){
+  .nav,.header-cta{display:none}
+  .burger{display:flex}
+  .canvas-side{display:none}
+}
+@media (min-width:900px){
+  .mobile-nav{display:none !important}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;scroll-behavior:auto !important}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Framestack",
+  "url": "https://framestackai.com/",
+  "logo": "https://framestackai.com/assets/img/framestack-logo.png",
+  "description": "Framestack builds developer tools for AI development in Python. Its first product, Framestack AI Builder, is an open-source visual builder where code is the source of truth.",
+  "sameAs": [
+    "https://github.com/ysz7/framestack-ai-builder"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Framestack AI Builder",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Visual AI agent builder",
+  "operatingSystem": "macOS",
+  "softwareVersion": "0.1.0",
+  "url": "https://framestackai.com/builder",
+  "downloadUrl": "https://github.com/ysz7/framestack-ai-builder",
+  "description": "Open-source, self-hosted visual AI agent builder for Python. The node graph is a two-way projection of real, runnable code; a node turns green only when the project's own tests run through it and pass.",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Framestack",
+    "url": "https://framestackai.com/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://framestackai.com/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Framestack AI Builder?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Framestack AI Builder is an open-source, self-hosted visual AI agent builder for Python. You draw agents, RAG pipelines, FastAPI services and MCP servers as a node graph that is a two-way projection of real code — edit either side and the other follows. It is MIT-licensed and runs as a desktop app." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from Langflow, Flowise or n8n?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Unlike Langflow, Flowise or n8n, Framestack keeps your code as the single source of truth instead of a JSON flow document. There is no manifest and no graph file; the graph is read from your Python. A step is only marked proven once your own tests run through it and pass." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it lock me into a runtime?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. What you build is an ordinary Python project you can deploy anywhere. One command removes Framestack from it completely, leaving code that behaves exactly the same. Delete Framestack and your project keeps running — there's no vendor lock-in and nothing to migrate off." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it mean when a node is green?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It means that part of your app has really run and worked — your own tests went through it and passed. If something can't be checked, it stays grey instead, so “couldn't check” never turns into “looks good.”" }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use my existing Python project?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Framestack reads your existing Python and lays it out as a graph, so you can point it at a project you already have. Edits you make on the canvas are written straight back into your code, touching only what you changed. You can keep editing by hand in any editor too." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which frameworks are supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Framestack supports eight node families: FastAPI services and routing, LangGraph agents and state, RAG pipelines (chunking, embedding, retrieval, generation), MCP servers and clients, Celery queues and background tasks, Docker and Compose, databases, and vector stores — 27 node kinds in total. Support covers what is in the registry." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it free and open source?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Framestack is free and open source under the MIT license. It is currently version 0.1.0, with 578 tests and a single gate that CI runs. Building from source needs a Rust toolchain, and the .app and .dmg are built on macOS. It is a desktop application." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an API key or an account?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No account is required — Framestack has no cloud, no sign-in and no hosting, and runs locally as a desktop app. For the AI-agent half that writes code to your project's rules, you need Claude Code installed on your machine." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does my code live?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Your code lives locally, in your own repository. Framestack has no manifest and no graph file — the Python in your project is the source of truth. Nothing is uploaded to a cloud, and the built application deploys as a normal Python project on infrastructure you control." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I edit the code by hand?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. It's ordinary Python, so you can edit it by hand in any editor. Framestack writes canvas changes straight back into your code, and it notices if the two ever fall out of step — so your hand edits and canvas edits stay in sync." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Framestack home">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="1.6" y="11.6" width="18.8" height="18.8" rx="5" stroke="#17181B" stroke-width="3"></rect><path d="M11.6 1.6h14.8a4 4 0 0 1 4 4v14.8a4 4 0 0 1-4 4H11.6a4 4 0 0 1-4-4V5.6a4 4 0 0 1 4-4z" fill="#17181B" stroke="#FAFAFA" stroke-width="3"></path></svg>
+      <span>Framestack</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="dropdown" data-dropdown>
+        <button type="button" aria-expanded="false" aria-haspopup="true" data-dropdown-toggle>
+          Products <span class="chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="dropdown-panel" role="menu">
+          <a class="dd-item" href="product.html" role="menuitem">
+            <span class="dd-ico" aria-hidden="true"><i></i></span>
+            <span>
+              <span class="dd-title">Framestack AI Builder</span>
+              <span class="dd-desc">Visual builder for Python where code is the source of truth.</span>
+            </span>
+          </a>
+          <div class="dd-more">MORE SOON</div>
+        </div>
+      </div>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+    </nav>
+
+    <div class="spacer"></div>
+
+    <div class="header-cta">
+      <a class="btn btn-primary btn-sm" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+    </div>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" data-burger>
+      <i></i><i></i>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="product.html">Framestack AI Builder<span class="m-sub">Visual builder for Python</span></a>
+    <a href="#how">How it works</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+    <div style="margin-top:24px">
+      <a class="btn btn-primary" style="display:block;text-align:center" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="wrap section--tight center">
+    <p class="eyebrow">Framestack AI Builder</p>
+    <h1 class="h1 mt-30">The open source AI&nbsp;agent builder where code is the source of truth</h1>
+    <p class="lead maxw-640 mt-lead" style="margin-inline:auto">Most visual builders show a step as green the moment you add it. Framestack only lights a step up once your app has really run through it and worked — proof it works, not just that it exists.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+      <a class="btn btn-outline" href="#how">See how it works</a>
+      <span class="hero-note">open source · self-hosted · MIT</span>
+    </div>
+  </section>
+
+  <!-- ============ HERO SCREENSHOT ============ -->
+  <section class="wrap" style="padding-bottom:clamp(80px,10vw,132px)">
+    <!-- IMAGE: Framestack canvas — a Python node graph with the Agent node proven (highlighted) | 1200x800 | alt="Framestack AI Builder canvas showing a Python node graph with a proven Agent node highlighted" -->
+    <figure class="frame">
+      <div class="frame-bar">
+        <span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="frame-path">flows / support-agent</span>
+        <span class="spacer"></span>
+        <span class="frame-run">run</span>
+      </div>
+      <img class="shot" src="assets/img/hero-canvas.png"
+           width="1200" height="589" loading="eager" fetchpriority="high" decoding="async"
+           alt="Framestack AI Builder canvas showing a Python node graph with a proven Agent node highlighted"
+           onerror="this.style.display='none';this.nextElementSibling.hidden=false">
+      <div class="canvas" hidden role="img" aria-label="Wireframe of the Framestack canvas: a POST /chat route feeding a retriever, an agent and an MCP tool, returning a response">
+        <div class="canvas-inner">
+          <div class="node" style="position:absolute;left:56px;top:168px;width:176px">
+            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">POST /chat</span></div>
+            <div class="node-body"><span class="bar" style="width:76%"></span><span class="bar" style="width:52%"></span></div>
+          </div>
+          <div style="position:absolute;left:232px;top:194px;width:72px;height:1px;background:#B4B8C0"></div>
+          <div class="node" style="position:absolute;left:304px;top:76px;width:190px">
+            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">Retriever</span><span class="node-meta">pgvector</span></div>
+            <div class="node-body"><span class="bar" style="width:84%"></span><span class="bar" style="width:46%"></span></div>
+          </div>
+          <div class="node node--active" style="position:absolute;left:304px;top:194px;width:190px">
+            <div class="node-head"><span class="dot dot--ink" aria-hidden="true"></span><span class="node-name">Agent</span><span class="node-meta">proven</span></div>
+            <div class="node-body"><span class="bar" style="width:92%;background:#E6E8EA"></span><span class="bar" style="width:64%"></span><span class="bar" style="width:38%"></span></div>
+          </div>
+          <div class="node" style="position:absolute;left:304px;top:310px;width:190px">
+            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">MCP tool</span><span class="node-meta">search</span></div>
+            <div class="node-body"><span class="bar" style="width:58%"></span></div>
+          </div>
+          <div style="position:absolute;left:398px;top:137px;width:1px;height:57px;background:#B4B8C0"></div>
+          <div style="position:absolute;left:398px;top:264px;width:1px;height:46px;background:#B4B8C0"></div>
+          <div style="position:absolute;left:494px;top:220px;width:74px;height:1px;background:#B4B8C0"></div>
+          <div class="node" style="position:absolute;left:568px;top:194px;width:176px">
+            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">Response</span></div>
+            <div class="node-body"><span class="bar" style="width:70%"></span></div>
+          </div>
+          <span class="ph-note">wireframe — drop the product screenshot here</span>
+        </div>
+      </div>
+    </figure>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="section--white" id="problem">
+    <div class="wrap section center">
+      <p class="eyebrow">The problem</p>
+      <h2 class="h2 h2--center mt-30">Everything's green. Nothing's proven.</h2>
+      <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">You wire up a flow, every box lights up, and you still can't tell if it actually runs. Then you export it and get tangled code nobody wants to own. The picture and the real app drift apart — and you're the one who finds out in production.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2 h2--center mt-30">Code writes the graph. Tests color it.</h2>
+      </div>
+      <div class="grid grid-2" style="margin-top:clamp(44px,5vw,64px)">
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 1</p>
+          <h3 class="h3" style="margin-top:14px">Start from real Python</h3>
+          <p class="muted-p">Describe your app in plain Python — or let the built-in AI write it for you. It's just your code, with nothing exotic to learn.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 2</p>
+          <h3 class="h3" style="margin-top:14px">The canvas draws itself</h3>
+          <p class="muted-p">Framestack reads your code and lays it out as a graph for you. There's no extra file to keep in sync — your code is the project.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 3</p>
+          <h3 class="h3" style="margin-top:14px">Edit whichever side you like</h3>
+          <p class="muted-p">Drag things on the canvas and your code updates. Edit the code and the canvas follows. The two never drift apart.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 4</p>
+          <h3 class="h3" style="margin-top:14px">You see what actually works</h3>
+          <p class="muted-p">Run your app and Framestack lights up every part that did its job. What you see is proof — not decoration.</p>
+        </article>
+      </div>
+
+      <div style="margin-top:36px">
+        <figure class="frame">
+          <div class="frame-bar">
+            <span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="frame-path">code ⇄ graph</span>
+          </div>
+          <div class="split" style="padding:clamp(28px,4vw,44px)">
+            <div class="code">
+              <div class="code-bar">flows/support_agent.py</div>
+<pre>from framestack import bp
+
+@bp.route("POST /chat")
+def chat(msg: str) -&gt; str:
+    <span class="cm"># retriever → agent → mcp:search</span>
+    ...</pre>
+            </div>
+            <div class="stack-sm">
+              <div class="node node--active"><div class="node-head"><span class="dot dot--ink"></span><span class="node-name">Agent</span><span class="node-meta">proven</span></div><div class="node-body"><span class="bar" style="width:88%"></span><span class="bar" style="width:56%"></span></div></div>
+              <div class="node"><div class="node-head"><span class="dot"></span><span class="node-name">Retriever</span></div><div class="node-body"><span class="bar" style="width:70%"></span></div></div>
+              <p class="row-desc" style="flex:0">The graph is a two-way projection: edit either side and the other follows.</p>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROOF (central) ============ -->
+  <section class="section--white" id="proof">
+    <div class="wrap section">
+      <div class="center">
+        <p class="eyebrow">Proof, not guesswork</p>
+        <h2 class="h2 h2--center mt-30">You can trust what's done</h2>
+        <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">This is the heart of Framestack. A part of your app is only marked proven once it has really run and done its job. If something can't be checked, it stays unmarked — so you never get a signal that lies.</p>
+      </div>
+
+      <div class="states">
+        <div class="state-card">
+          <span class="dot dot--ink" style="width:9px;height:9px" aria-hidden="true"></span>
+          <p class="state-tag">Proven — green</p>
+          <p class="state-desc">Your app ran through this part and it worked. That's the only way it counts as proven.</p>
+        </div>
+        <div class="state-card">
+          <span class="dot" style="width:9px;height:9px" aria-hidden="true"></span>
+          <p class="state-tag">Not proven yet</p>
+          <p class="state-desc">Nothing has run through this part yet. It isn't broken — it just hasn't proven itself, so it makes no promises.</p>
+        </div>
+        <div class="state-card state-card--skip">
+          <span class="dot dot--hollow" style="width:9px;height:9px" aria-hidden="true"></span>
+          <p class="state-tag">Couldn't check</p>
+          <p class="state-desc">Something got in the way of checking this part, so it stays grey. “Couldn't check” never becomes “looks good.”</p>
+        </div>
+      </div>
+
+      <p class="lead maxw-560" style="margin:clamp(40px,5vw,56px) auto 0;text-align:center;color:var(--t4)">So when you hand your project to a teammate or push it live, "done" isn't a hope — it's the parts you've watched work with your own eyes.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU CAN BUILD ============ -->
+  <section class="section" id="build">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">What you can build</p>
+        <h2 class="h2 h2--center mt-30">27 node kinds across 8 families</h2>
+        <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">Everything in the registry compiles to real, runnable Python. Support covers what is listed here — nothing is faked in.</p>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <div class="row-name">FastAPI</div>
+          <div class="row-desc">Stand up an HTTP service with routers and routes, and configure it through settings.</div>
+          <div class="row-kinds">service · routers · routes · settings</div>
+        </div>
+        <div class="row">
+          <div class="row-name">LangGraph</div>
+          <div class="row-desc">Build an agent as a reasoning loop over shared state, wired to nodes and tools.</div>
+          <div class="row-kinds">agent · state · nodes · tools · settings</div>
+        </div>
+        <div class="row">
+          <div class="row-name">RAG</div>
+          <div class="row-desc">Compose a retrieval pipeline from its stages, each a node you can inspect and run.</div>
+          <div class="row-kinds">pipeline · chunking · embedding · retrieval · generation</div>
+        </div>
+        <div class="row">
+          <div class="row-name">MCP</div>
+          <div class="row-desc">Expose your own MCP server and tools, or consume a third-party server as a node.</div>
+          <div class="row-kinds">your server · your tools · consumed server</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Queues &amp; background work</div>
+          <div class="row-desc">Run work off the request path with Celery workers and tasks.</div>
+          <div class="row-kinds">Celery workers · background tasks</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Containers</div>
+          <div class="row-desc">Package and orchestrate the app with Docker and Compose.</div>
+          <div class="row-kinds">Docker · Compose</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Database</div>
+          <div class="row-desc">Attach a relational database the rest of the graph can read and write.</div>
+          <div class="row-kinds">database</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Vector store</div>
+          <div class="row-desc">Attach a vector store for embeddings and retrieval.</div>
+          <div class="row-kinds">vector store</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPARISON ============ -->
+  <section class="section--white" id="compare">
+    <div class="wrap section">
+      <div class="center">
+        <p class="eyebrow">How it compares</p>
+        <h2 class="h2 h2--center mt-30">Same canvas idea, different mechanics</h2>
+        <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">A Langflow, Flowise, n8n or Dify alternative for developers — with one big difference in what you actually end up owning.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="cmp">
+          <caption>How other visual builders and Framestack compare on what your project really is, adding a step, what "done" means, leaving the tool, and lock-in.</caption>
+          <thead>
+            <tr>
+              <th scope="col">&nbsp;</th>
+              <th scope="col" class="them">Other visual builders</th>
+              <th scope="col" class="us">Framestack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">What your project is</th>
+              <td class="them">A diagram in the tool's own format.</td>
+              <td class="us">Your real Python code.</td>
+            </tr>
+            <tr>
+              <th scope="row">Adding a step</th>
+              <td class="them">Drops another box on the diagram.</td>
+              <td class="us">Adds real code you can read and run.</td>
+            </tr>
+            <tr>
+              <th scope="row">What “done” means</th>
+              <td class="them">You added the box.</td>
+              <td class="us">Your app ran through it and it worked.</td>
+            </tr>
+            <tr>
+              <th scope="row">If you stop using it</th>
+              <td class="them">It stops working without the tool.</td>
+              <td class="us">Your project keeps running on its own.</td>
+            </tr>
+            <tr>
+              <th scope="row">Lock-in</th>
+              <td class="them">You're tied to their platform.</td>
+              <td class="us">None — it's just a Python project.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NO LOCK-IN ============ -->
+  <section class="section" id="no-lockin">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">No lock-in</p>
+          <h2 class="h2 h1--left" style="font-size:clamp(28px,4.4vw,42px);margin-top:20px">Deploy your project anywhere. It doesn't need Framestack.</h2>
+          <p class="muted-p" style="max-width:460px;color:var(--t3)">What you build is a normal Python project — not something trapped inside our tool. Ship it to your own servers, hand it to your team, or stop using Framestack entirely. It keeps running without us.</p>
+          <div class="bullets">
+            <div><i aria-hidden="true"></i><span>It's your code from start to finish — no hidden runtime.</span></div>
+            <div><i aria-hidden="true"></i><span>Runs anywhere Python runs: your servers, your keys, your data.</span></div>
+            <div><i aria-hidden="true"></i><span>Walk away from Framestack and nothing breaks.</span></div>
+          </div>
+        </div>
+        <div class="code">
+          <div class="code-bar">your project</div>
+<pre><span class="cm"># it's just Python</span>
+$ python -m app     <span class="cm"># runs on its own — no Framestack needed</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HONEST CAVEATS ============ -->
+  <section class="section--white" id="caveats">
+    <div class="wrap section">
+      <div class="center">
+        <p class="eyebrow">Honest caveats</p>
+        <h2 class="h2 h2--center mt-30">Where it is today</h2>
+      </div>
+      <div class="grid grid-3" style="margin-top:44px">
+        <div class="card-sm">
+          <p class="tag">It's early</p>
+          <p class="muted-p">Framestack is version 0.1.0 and open source. It's well-tested (578 tests), but still young — expect a few rough edges.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Does what's in the box</p>
+          <p class="muted-p">It supports the building blocks in its library — agents, RAG, APIs, tools and more. It's not “every framework under the sun.”</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">A desktop app you build</p>
+          <p class="muted-p">It's a desktop app you build from source (you'll need Rust), and the Mac builds are made on macOS.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">The AI helper</p>
+          <p class="muted-p">The built-in AI that writes code for you needs Claude Code installed on your machine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPEN SOURCE ============ -->
+  <section class="section" id="open-source">
+    <div class="wrap center">
+      <p class="eyebrow">Open source</p>
+      <h2 class="h2 h2--center mt-30">Free, MIT, and yours to read</h2>
+      <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">Framestack AI Builder is MIT-licensed. Read the source, run it locally, open an issue, send a pull request. No account, no cloud, no pricing page.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
+        <a class="btn btn-outline" href="product.html">Explore the builder</a>
+        <span class="hero-note">Free · MIT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section--white" id="faq">
+    <div class="wrap section">
+      <div class="center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2 h2--center mt-30">Questions engineers ask</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>What is Framestack AI Builder?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">Framestack AI Builder is an open-source, self-hosted visual AI agent builder for Python. You draw agents, RAG pipelines, FastAPI services and MCP servers as a node graph that is a two-way projection of real code — edit either side and the other follows. It is MIT-licensed and runs as a desktop app.</p>
+        </details>
+        <details>
+          <summary>How is this different from Langflow, Flowise or n8n?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">Unlike Langflow, Flowise or n8n, Framestack keeps your code as the single source of truth instead of a JSON flow document. There is no manifest and no graph file; the graph is read from your Python. A step is only marked proven once your own tests run through it and pass.</p>
+        </details>
+        <details>
+          <summary>Does it lock me into a runtime?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">No. What you build is an ordinary Python project you can deploy anywhere. One command removes Framestack from it completely, leaving code that behaves exactly the same. Delete Framestack and your project keeps running — there's no vendor lock-in and nothing to migrate off.</p>
+        </details>
+        <details>
+          <summary>What does it mean when a node is green?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">It means that part of your app has really run and worked — your own tests went through it and passed. If something can't be checked, it stays grey instead, so “couldn't check” never turns into “looks good.”</p>
+        </details>
+        <details>
+          <summary>Can I use my existing Python project?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">Yes. Framestack reads your existing Python and lays it out as a graph, so you can point it at a project you already have. Edits you make on the canvas are written straight back into your code, touching only what you changed. You can keep editing by hand in any editor too.</p>
+        </details>
+        <details>
+          <summary>Which frameworks are supported?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">Framestack supports eight node families: FastAPI services and routing, LangGraph agents and state, RAG pipelines (chunking, embedding, retrieval, generation), MCP servers and clients, Celery queues and background tasks, Docker and Compose, databases, and vector stores — 27 node kinds in total. Support covers what is in the registry.</p>
+        </details>
+        <details>
+          <summary>Is it free and open source?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">Yes. Framestack is free and open source under the MIT license. It is currently version 0.1.0, with 578 tests and a single gate that CI runs. Building from source needs a Rust toolchain, and the .app and .dmg are built on macOS. It is a desktop application.</p>
+        </details>
+        <details>
+          <summary>Do I need an API key or an account?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">No account is required — Framestack has no cloud, no sign-in and no hosting, and runs locally as a desktop app. For the AI-agent half that writes code to your project's rules, you need Claude Code installed on your machine.</p>
+        </details>
+        <details>
+          <summary>Where does my code live?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">Your code lives locally, in your own repository. Framestack has no manifest and no graph file — the Python in your project is the source of truth. Nothing is uploaded to a cloud, and the built application deploys as a normal Python project on infrastructure you control.</p>
+        </details>
+        <details>
+          <summary>Can I edit the code by hand?<span class="mk" aria-hidden="true">+</span></summary>
+          <p class="ans">Yes. It's ordinary Python, so you can edit it by hand in any editor. Framestack writes canvas changes straight back into your code, and it notices if the two ever fall out of step — so your hand edits and canvas edits stay in sync.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="section--subtle">
+    <div class="wrap" style="padding-top:clamp(52px,7vw,84px);padding-bottom:clamp(52px,7vw,84px)">
+      <div class="cta">
+        <div>
+          <h2 class="h2" style="font-size:clamp(28px,4.2vw,40px);line-height:1.06">Start with a blank canvas.</h2>
+          <p style="font-size:clamp(15.5px,1.8vw,16.5px);color:var(--t3);margin-top:14px">Open source. Run it locally in a few minutes.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+          <a class="btn btn-outline" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div style="grid-column:span 1;min-width:200px">
+      <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="1.6" y="11.6" width="18.8" height="18.8" rx="5" stroke="#17181B" stroke-width="3"></rect><path d="M11.6 1.6h14.8a4 4 0 0 1 4 4v14.8a4 4 0 0 1-4 4H11.6a4 4 0 0 1-4-4V5.6a4 4 0 0 1 4-4z" fill="#17181B" stroke="#FAFAFA" stroke-width="3"></path></svg>
+        <span>Framestack</span>
+      </div>
+      <p class="footer-brand-note">Developer tools for AI development in Python.<br>framestackai.com</p>
+    </div>
+    <nav class="footer-col" aria-label="Product">
+      <div class="footer-head">Product</div>
+      <a href="product.html">Framestack AI Builder</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <nav class="footer-col" aria-label="Resources">
+      <div class="footer-head">Resources</div>
+      <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+      <a href="https://github.com/ysz7/framestack-ai-builder#readme">Docs</a>
+      <a href="product.html#quickstart">Quick start</a>
+    </nav>
+    <nav class="footer-col" aria-label="Brand">
+      <div class="footer-head">Framestack</div>
+      <a href="#open-source">Open source</a>
+      <a href="product.html">Products</a>
+    </nav>
+  </div>
+  <div class="wrap footer-copy">© 2026 Framestack · MIT licensed</div>
+</footer>
+
+<script>
+(function(){
+  // Products dropdown (desktop)
+  document.querySelectorAll('[data-dropdown]').forEach(function(dd){
+    var btn = dd.querySelector('[data-dropdown-toggle]');
+    function set(open){ dd.setAttribute('data-open', open); btn.setAttribute('aria-expanded', open); }
+    dd.addEventListener('mouseenter', function(){ set(true); });
+    dd.addEventListener('mouseleave', function(){ set(false); });
+    btn.addEventListener('click', function(){ set(dd.getAttribute('data-open') !== 'true'); });
+    btn.addEventListener('keydown', function(e){ if(e.key==='Escape'){ set(false); } });
+  });
+  // Mobile menu
+  var burger = document.querySelector('[data-burger]');
+  var mnav = document.getElementById('mobile-nav');
+  if(burger && mnav){
+    burger.addEventListener('click', function(){
+      var open = mnav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mnav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ mnav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+})();
+</script>
+</body>
+</html>

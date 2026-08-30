@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framestack AI Builder — Code-First Visual Builder for Python</title>
+<meta name="description" content="A code-first visual builder for Python. Build LangGraph, RAG, MCP and FastAPI as nodes over real Python. Self-hosted, open source, MIT, 27 node kinds.">
+<link rel="canonical" href="https://framestackai.com/product.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#FAFAFA">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Framestack">
+<meta property="og:title" content="Framestack AI Builder — Code-First Visual Builder for Python">
+<meta property="og:description" content="LangGraph, RAG, MCP and FastAPI as nodes over real Python. A node turns green only when your tests prove it. Self-hosted, open source, MIT.">
+<meta property="og:url" content="https://framestackai.com/product.html">
+<meta property="og:image" content="https://framestackai.com/assets/img/og-builder.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Framestack AI Builder canvas and node inspector">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Framestack AI Builder — Code-First Visual Builder for Python">
+<meta name="twitter:description" content="LangGraph, RAG, MCP and FastAPI as nodes over real Python. A node turns green only when your tests prove it. Open source, MIT.">
+<meta name="twitter:image" content="https://framestackai.com/assets/img/og-builder.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<style>/* Framestack design system — extracted from FramestackAI Site.dc.html */
+:root{
+  --bg:#FAFAFA; --card:#FFFFFF; --subtle:#F4F5F6;
+  --ink:#17181B; --t2:#4A4D53; --t3:#55585E; --t4:#6E7176; --muted:#9CA0A6; --faint:#B4B8C0;
+  --b1:#E2E4E7; --b2:#EDEEF0; --b3:#D6D9DD; --b4:#E8EAEC;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:'Onest','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --maxw:1200px; --pad:clamp(20px,4vw,40px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{max-width:100%;display:block}
+a{color:var(--ink);text-decoration:none}
+a:hover{color:var(--t4)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  color:var(--t4);border-bottom:1px solid var(--b3);padding-bottom:12px;text-transform:uppercase}
+.lead{font-size:clamp(17px,2.2vw,20px);line-height:1.5;color:var(--t3);text-wrap:pretty}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(250,250,250,.9);
+  backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--b1)}
+.header-inner{display:flex;align-items:center;gap:clamp(22px,3vw,44px);height:56px}
+.brand{display:flex;align-items:center;gap:9px;flex:none}
+.brand span{font-size:19px;font-weight:700;letter-spacing:-.03em}
+.nav{display:flex;align-items:center;gap:28px;font-size:14px;color:var(--t2)}
+.nav a{color:var(--t2)}
+.nav a:hover{color:var(--ink)}
+.spacer{flex:1}
+.dropdown{position:relative}
+.dropdown>button{display:flex;align-items:center;gap:6px;cursor:pointer;height:56px;
+  background:none;border:0;font:inherit;color:var(--t2);padding:0}
+.dropdown>button .chev{font-size:9px;color:var(--muted)}
+.dropdown-panel{position:absolute;top:52px;left:-16px;width:320px;background:#fff;
+  border:1px solid var(--b1);border-radius:8px;padding:8px;box-shadow:0 12px 32px rgba(23,24,27,.08);
+  opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s}
+.dropdown[data-open="true"] .dropdown-panel{opacity:1;visibility:visible;transform:none}
+.dd-item{display:flex;gap:12px;padding:12px;border-radius:6px}
+.dd-item:hover{background:var(--subtle)}
+.dd-ico{width:30px;height:30px;border:1px solid var(--b3);border-radius:5px;flex:none;
+  display:flex;align-items:center;justify-content:center}
+.dd-ico i{width:8px;height:8px;border:1.5px solid var(--ink);display:block}
+.dd-title{font-size:13.5px;font-weight:600;color:var(--ink)}
+.dd-desc{font-size:12.5px;color:var(--t4);margin-top:3px;line-height:1.45}
+.dd-more{padding:10px 12px 6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  color:var(--muted);border-top:1px solid var(--b2);margin-top:4px}
+.header-cta{display:flex;align-items:center;gap:18px;font-size:14px}
+
+/* buttons */
+.btn{display:inline-block;border-radius:999px;font-size:14.5px;font-weight:500;cursor:pointer;
+  transition:transform .16s,box-shadow .16s,background .16s,border-color .16s;font-family:inherit}
+.btn-primary{background:var(--ink);color:var(--bg);padding:14px 22px;border:1px solid var(--ink)}
+.btn-primary:hover{background:#2E3035;color:var(--bg)}
+.btn-outline{background:#fff;color:var(--ink);border:1px solid var(--b3);padding:13px 22px}
+.btn-outline:hover{border-color:var(--ink)}
+.btn-sm{padding:9px 18px;font-size:14px}
+
+/* hamburger */
+.burger{display:none;width:44px;height:44px;margin-right:-10px;flex-direction:column;
+  align-items:center;justify-content:center;gap:5px;cursor:pointer;flex:none;background:none;border:0}
+.burger i{width:22px;height:1.5px;background:var(--ink);display:block}
+.mobile-nav{display:none;border-top:1px solid var(--b1);background:var(--bg);padding:8px var(--pad) 32px}
+.mobile-nav.open{display:block}
+.mobile-nav a,.mobile-nav .m-row{display:flex;align-items:center;padding:18px 0;
+  border-bottom:1px solid var(--b2);font-size:18px;min-height:56px;color:var(--ink)}
+.mobile-nav .m-sub{font-size:15px;color:var(--muted);margin-top:4px}
+
+/* sections */
+.section{padding-top:clamp(72px,9vw,120px);padding-bottom:clamp(80px,10vw,128px)}
+.section--tight{padding-top:clamp(64px,9vw,120px);padding-bottom:clamp(36px,5vw,52px)}
+.section--white{background:#fff;border-top:1px solid var(--b1)}
+.section--subtle{background:var(--subtle);border-top:1px solid var(--b1)}
+.center{text-align:center}
+.h1{font-size:clamp(38px,7.6vw,76px);line-height:1.02;letter-spacing:-.032em;font-weight:600;
+  max-width:920px;margin-inline:auto;text-wrap:balance}
+.h1--left{margin-inline:0;text-align:left}
+.h2{font-size:clamp(30px,4.6vw,48px);line-height:1.07;letter-spacing:-.032em;font-weight:600;text-wrap:balance}
+.h2--center{margin-inline:auto;text-align:center;max-width:760px}
+.h3{font-size:clamp(22px,3vw,31px);font-weight:500;letter-spacing:-.025em;line-height:1.12}
+
+/* cards */
+.card{border:1px solid rgba(23,24,27,.09);border-radius:22px;background:#fff;overflow:hidden;
+  box-shadow:0 1px 2px rgba(23,24,27,.03),0 24px 54px -32px rgba(23,24,27,.26);
+  transition:transform .2s,box-shadow .2s}
+.card--lift:hover{transform:translateY(-4px);box-shadow:0 30px 64px -30px rgba(23,24,27,.3)}
+.card-pad{padding:clamp(24px,3.4vw,42px)}
+.card-sm{border:1px solid var(--b1);border-radius:18px;background:#fff;padding:clamp(24px,3vw,32px);
+  transition:transform .18s,box-shadow .18s}
+.card-sm:hover{transform:translateY(-3px);box-shadow:0 20px 44px -24px rgba(23,24,27,.28)}
+.grid{display:grid;gap:24px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.muted-p{font-size:16px;line-height:1.6;color:var(--t2);margin-top:14px}
+
+/* browser frame (screenshot placeholder) */
+.frame{border:1px solid rgba(23,24,27,.09);border-radius:22px;background:#fff;overflow:hidden;
+  box-shadow:0 2px 4px rgba(23,24,27,.03),0 30px 70px -34px rgba(23,24,27,.34)}
+.frame-bar{height:38px;border-bottom:1px solid var(--b2);display:flex;align-items:center;gap:14px;padding:0 14px}
+.frame-dots{display:flex;gap:6px;flex:none}
+.frame-dots i{width:8px;height:8px;border-radius:50%;background:var(--b1);display:block}
+.frame-path{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frame-run{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--b1);border-radius:4px;padding:3px 8px;flex:none}
+.canvas{position:relative;min-height:420px;background-image:radial-gradient(#E6E8EA 1px,transparent 1px);
+  background-size:22px 22px;background-position:11px 11px;overflow-x:auto}
+.canvas-inner{position:relative;min-width:764px;height:100%;min-height:420px}
+.ph-note{position:absolute;right:16px;bottom:14px;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+figure{margin:0}
+.shot{width:100%;height:auto;display:block}
+
+/* node card (canvas + generic) */
+.node{background:#fff;border:1px solid var(--b3);border-radius:7px;box-shadow:0 2px 6px rgba(23,24,27,.05)}
+.node--active{border:1.5px solid var(--ink);box-shadow:0 6px 18px rgba(23,24,27,.09)}
+.node-head{padding:9px 11px;border-bottom:1px solid var(--b2);display:flex;align-items:center;gap:7px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--faint);flex:none}
+.dot--ink{background:var(--ink)}
+.dot--hollow{background:transparent;border:1px solid var(--faint)}
+.node-name{font-family:var(--mono);font-size:11px;color:var(--ink)}
+.node-meta{font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:auto}
+.node-body{padding:11px;display:flex;flex-direction:column;gap:6px}
+.bar{height:5px;border-radius:3px;background:var(--b2)}
+
+/* proof state legend */
+.states{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));margin-top:36px}
+.state-card{border:1px solid var(--b1);border-radius:14px;background:#fff;padding:20px}
+.state-card--skip{border-style:dashed}
+.state-tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:14px;text-transform:uppercase}
+.state-desc{font-size:14px;line-height:1.55;color:var(--t2);margin-top:8px}
+
+/* bullets */
+.bullets{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.bullets div{display:flex;gap:12px;align-items:baseline;font-size:15px;color:var(--t2)}
+.bullets i{width:5px;height:5px;background:var(--ink);flex:none;transform:translateY(-3px);display:block}
+
+/* code block */
+.code{border:1px solid var(--b1);border-radius:18px;background:#fff;overflow:hidden;min-width:0}
+.code-bar{height:34px;border-bottom:1px solid var(--b2);display:flex;align-items:center;padding:0 14px;
+  font-family:var(--mono);font-size:11px;color:var(--muted)}
+.code pre{margin:0;padding:22px;font-family:var(--mono);font-size:13px;line-height:1.75;color:var(--t2);
+  white-space:pre;overflow-x:auto}
+.code .cm{color:var(--muted)}
+
+/* comparison table */
+.table-wrap{margin-top:44px;overflow-x:auto;border:1px solid var(--b1);border-radius:18px;background:#fff}
+table.cmp{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
+.cmp caption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cmp th,.cmp td{text-align:left;padding:18px 22px;border-bottom:1px solid var(--b2);vertical-align:top;line-height:1.5}
+.cmp thead th{font-size:13px;font-family:var(--mono);letter-spacing:.04em;color:var(--muted);text-transform:uppercase;font-weight:500}
+.cmp tbody th{font-weight:600;color:var(--ink);width:210px}
+.cmp td.them{color:var(--t4)}
+.cmp td.us{color:var(--ink);background:#fff}
+.cmp thead th.us,.cmp tbody td.us{background:var(--subtle)}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:0}
+
+/* families / node kinds list */
+.rows{margin-top:40px;border-top:1px solid var(--b1)}
+.row{display:flex;flex-wrap:wrap;gap:8px 40px;padding:26px 0;border-bottom:1px solid var(--b2)}
+.row-name{flex:0 0 220px;font-family:var(--mono);font-size:13px;color:var(--ink)}
+.row-desc{flex:1 1 280px;font-size:15px;line-height:1.55;color:var(--t4)}
+.row-kinds{flex-basis:100%;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:2px}
+
+/* hex chips */
+.hexes{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,18px);margin-top:52px}
+.hex{width:104px;min-height:104px;background:var(--subtle);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;
+  justify-content:center;padding:0 12px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--t2)}
+
+/* FAQ */
+.faq{margin-top:44px;border-top:1px solid var(--b1)}
+.faq details{border-bottom:1px solid var(--b2)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;
+  gap:24px;font-size:clamp(17px,2vw,19px);font-weight:500;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .mk{font-size:16px;color:var(--muted);flex:none;transition:transform .2s}
+.faq details[open] summary .mk{transform:rotate(45deg)}
+.faq .ans{padding:0 0 26px;font-size:16px;line-height:1.6;color:var(--t2);max-width:760px}
+
+/* CTA strip */
+.cta{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* hero actions */
+.hero-actions{display:flex;gap:12px;margin-top:40px;align-items:center;justify-content:center;flex-wrap:wrap}
+.hero-note{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+/* split */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));
+  gap:clamp(36px,6vw,80px);align-items:center}
+
+/* footer */
+.site-footer{border-top:1px solid var(--b1);background:var(--bg)}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:36px;
+  padding-top:clamp(56px,6vw,76px);padding-bottom:clamp(56px,6vw,76px)}
+.footer-col{display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:var(--t4)}
+.footer-col a{color:var(--t4)}
+.footer-col a:hover{color:var(--ink)}
+.footer-head{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+.footer-brand-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:16px}
+.footer-copy{font-family:var(--mono);font-size:11px;color:var(--faint);padding-bottom:40px}
+
+/* utilities */
+.stack-sm>*+*{margin-top:12px}
+.mt-lead{margin-top:26px}
+.mt-30{margin-top:30px}
+.mt-20{margin-top:20px}
+.maxw-640{max-width:640px}
+.maxw-560{max-width:560px}
+.eyebrow-wrap{margin-bottom:0}
+
+/* responsive: replace JS wide/narrow */
+@media (max-width:899px){
+  .nav,.header-cta{display:none}
+  .burger{display:flex}
+  .canvas-side{display:none}
+}
+@media (min-width:900px){
+  .mobile-nav{display:none !important}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;scroll-behavior:auto !important}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Framestack",
+  "url": "https://framestackai.com/",
+  "logo": "https://framestackai.com/assets/img/framestack-logo.png",
+  "sameAs": [
+    "https://github.com/ysz7/framestack-ai-builder"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Framestack AI Builder",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Visual AI agent builder",
+  "operatingSystem": "macOS",
+  "softwareVersion": "0.1.0",
+  "url": "https://framestackai.com/product.html",
+  "downloadUrl": "https://github.com/ysz7/framestack-ai-builder",
+  "softwareRequirements": "Rust toolchain to build from source; Claude Code for the AI-agent features.",
+  "description": "A code-first visual builder for Python. Build LangGraph agents, RAG pipelines, MCP servers and FastAPI services as a node graph that projects real, runnable code. A node turns green only when the project's own tests run through it.",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "Framestack", "url": "https://framestackai.com/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://framestackai.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Framestack AI Builder", "item": "https://framestackai.com/product.html" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Framestack home">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="1.6" y="11.6" width="18.8" height="18.8" rx="5" stroke="#17181B" stroke-width="3"></rect><path d="M11.6 1.6h14.8a4 4 0 0 1 4 4v14.8a4 4 0 0 1-4 4H11.6a4 4 0 0 1-4-4V5.6a4 4 0 0 1 4-4z" fill="#17181B" stroke="#FAFAFA" stroke-width="3"></path></svg>
+      <span>Framestack</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <div class="dropdown" data-dropdown>
+        <button type="button" aria-expanded="false" aria-haspopup="true" data-dropdown-toggle>
+          Products <span class="chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="dropdown-panel" role="menu">
+          <a class="dd-item" href="product.html" role="menuitem">
+            <span class="dd-ico" aria-hidden="true"><i></i></span>
+            <span>
+              <span class="dd-title">Framestack AI Builder</span>
+              <span class="dd-desc">Visual builder for Python where code is the source of truth.</span>
+            </span>
+          </a>
+          <div class="dd-more">MORE SOON</div>
+        </div>
+      </div>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-sm" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+    </div>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" data-burger><i></i><i></i></button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="product.html">Framestack AI Builder<span class="m-sub">Visual builder for Python</span></a>
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+    <div style="margin-top:24px"><a class="btn btn-primary" style="display:block;text-align:center" href="https://github.com/ysz7/framestack-ai-builder">Get started</a></div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ PRODUCT HERO ============ -->
+  <section class="wrap section--tight">
+    <p class="eyebrow">Product</p>
+    <h1 class="h1 h1--left mt-30" style="font-size:clamp(34px,6vw,60px)">Framestack AI&nbsp;Builder</h1>
+    <p class="lead maxw-640 mt-lead" style="color:var(--t3)">A visual builder for Python that keeps your real code in charge. Lay out your app as a graph, adjust each piece, run it, and ship it as a plain Python project you own outright. The canvas always mirrors your actual code — never a stand-in for it.</p>
+    <div class="hero-actions" style="justify-content:flex-start;margin-top:28px">
+      <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+      <a class="btn btn-outline" href="#quickstart">Quick start</a>
+      <span class="hero-note">v0.1.0 · MIT · desktop app</span>
+    </div>
+  </section>
+
+  <!-- ============ CANVAS + INSPECTOR ============ -->
+  <section class="wrap" style="padding:16px 0 clamp(80px,10vw,128px)">
+    <div class="wrap" style="padding-left:var(--pad);padding-right:var(--pad)">
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:stretch">
+      <!-- IMAGE: Builder canvas — a RAG ingest→chunk→embed→vector-store pipeline feeding an Agent node | 1200x920 | alt="Framestack AI Builder canvas showing a RAG pipeline feeding an agent node" -->
+      <figure style="flex:1 1 420px;min-width:0;margin:0">
+        <div class="frame" style="height:100%">
+          <div class="frame-bar">
+            <span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="frame-path">flows / rag-agent</span>
+          </div>
+          <img class="shot" src="assets/img/builder-canvas.png"
+               width="1200" height="710" loading="lazy" decoding="async"
+               alt="Framestack AI Builder canvas showing a RAG pipeline feeding an agent node"
+               onerror="this.style.display='none';this.nextElementSibling.hidden=false">
+          <div class="canvas" style="min-height:460px" hidden role="img" aria-label="Wireframe: ingest, chunk and embed, and vector store nodes feeding an agent reasoning loop">
+            <div class="canvas-inner" style="min-width:590px;min-height:460px">
+              <div class="node" style="position:absolute;left:40px;top:60px;width:200px;padding:0"><div class="node-body" style="padding:12px"><span class="node-name">Ingest · docs/</span><span class="bar" style="width:62%;margin-top:10px"></span></div></div>
+              <div class="node" style="position:absolute;left:40px;top:200px;width:200px;padding:0"><div class="node-body" style="padding:12px"><span class="node-name">Chunk + Embed</span><span class="bar" style="width:78%;margin-top:10px"></span></div></div>
+              <div class="node" style="position:absolute;left:40px;top:340px;width:200px;padding:0"><div class="node-body" style="padding:12px"><span class="node-name">Vector store</span><span class="bar" style="width:44%;margin-top:10px"></span></div></div>
+              <div style="position:absolute;left:140px;top:116px;width:1px;height:84px;background:#B4B8C0"></div>
+              <div style="position:absolute;left:140px;top:256px;width:1px;height:84px;background:#B4B8C0"></div>
+              <div style="position:absolute;left:240px;top:232px;width:96px;height:1px;background:#B4B8C0"></div>
+              <div class="node node--active" style="position:absolute;left:336px;top:172px;width:214px;padding:0"><div class="node-body" style="padding:14px"><span class="node-name">Agent · reasoning loop</span><span class="bar" style="width:88%;background:#E6E8EA;margin-top:12px"></span><span class="bar" style="width:56%"></span></div></div>
+              <span class="ph-note">wireframe — canvas view</span>
+            </div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- IMAGE: Node inspector panel — model, system prompt, tools | 640x920 | alt="Framestack node inspector showing model, system prompt and tools for an agent node" -->
+      <figure style="flex:1 1 240px;margin:0">
+        <div class="card-sm" style="height:100%">
+          <p class="tag">Inspector</p>
+          <div style="font-size:14px;font-weight:600;margin-top:14px">Agent</div>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-top:18px">
+            <div>
+              <div class="tag" style="text-transform:none">model</div>
+              <div style="border:1px solid var(--b1);border-radius:5px;padding:8px 10px;font-size:12.5px;color:var(--t2);margin-top:6px">provider / model</div>
+            </div>
+            <div>
+              <div class="tag" style="text-transform:none">system prompt</div>
+              <div style="border:1px solid var(--b1);border-radius:5px;padding:10px;margin-top:6px;display:flex;flex-direction:column;gap:6px">
+                <span class="bar" style="width:90%"></span><span class="bar" style="width:72%"></span><span class="bar" style="width:40%"></span>
+              </div>
+            </div>
+            <div>
+              <div class="tag" style="text-transform:none">tools</div>
+              <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px">
+                <div style="border:1px solid var(--b1);border-radius:5px;padding:7px 10px;font-size:12px;color:var(--t2)">mcp: search</div>
+                <div style="border:1px solid var(--b1);border-radius:5px;padding:7px 10px;font-size:12px;color:var(--t2)">python: lookup_order</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============ NODE REGISTRY ============ -->
+  <section class="section--white" id="registry">
+    <div class="wrap section">
+      <p class="eyebrow">Node registry</p>
+      <h2 class="h2 h1--left mt-30" style="font-size:clamp(26px,3.6vw,34px)">27 node kinds, in 8 families</h2>
+      <p class="muted-p" style="max-width:560px;color:var(--t3)">Every block on the canvas is real, working code you can read, run and keep. Framestack supports what's in its library — not “every framework under the sun.”</p>
+      <div class="rows">
+        <div class="row">
+          <div class="row-name">FastAPI</div>
+          <div class="row-desc">Serve the graph over HTTP: a service with routers, routes and settings.</div>
+          <div class="row-kinds">service · routers · routes · settings</div>
+        </div>
+        <div class="row">
+          <div class="row-name">LangGraph</div>
+          <div class="row-desc">A reasoning loop over shared state, with nodes and callable tools.</div>
+          <div class="row-kinds">agent · state · nodes · tools · settings</div>
+        </div>
+        <div class="row">
+          <div class="row-name">RAG</div>
+          <div class="row-desc">A retrieval pipeline broken into stages you can inspect and run.</div>
+          <div class="row-kinds">pipeline · chunking · embedding · retrieval · generation</div>
+        </div>
+        <div class="row">
+          <div class="row-name">MCP</div>
+          <div class="row-desc">Publish your own Model Context Protocol server and tools, or consume a third-party server.</div>
+          <div class="row-kinds">your server · your tools · consumed server</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Queues &amp; background work</div>
+          <div class="row-desc">Move work off the request path with Celery.</div>
+          <div class="row-kinds">Celery workers · background tasks</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Containers</div>
+          <div class="row-desc">Package and orchestrate with Docker and Compose.</div>
+          <div class="row-kinds">Docker · Compose</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Database</div>
+          <div class="row-desc">A relational database the graph can read from and write to.</div>
+          <div class="row-kinds">database</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Vector store</div>
+          <div class="row-desc">A vector store for embeddings and retrieval.</div>
+          <div class="row-kinds">vector store</div>
+        </div>
+      </div>
+      <!-- TODO: confirm the exact per-family kind breakdown so the enumerated kinds sum to 27 -->
+    </div>
+  </section>
+
+  <!-- ============ WORKSPACE ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">In the workspace</p>
+      <h2 class="h2 h1--left mt-30" style="font-size:clamp(26px,3.6vw,34px)">More than a diagram — a place to work</h2>
+      <div class="grid grid-3" style="margin-top:40px">
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">See how it all connects</h3>
+          <p class="muted-p">Framestack shows how your pieces fit together — and, once you run it, how work actually flows between them.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Edit settings in place</h3>
+          <p class="muted-p">Change a node's settings right on its card or in the side panel, and Framestack updates your code for you.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Talk to what you built</h3>
+          <p class="muted-p">Chat with the assembled agent or RAG pipeline from inside the app, and hand documents to a pipeline for indexing.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Run it, stop it, watch it</h3>
+          <p class="muted-p">Start and stop the app, workers and Compose services. A terminal lives inside the app for everything else.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Blueprint catalog</h3>
+          <p class="muted-p">Drop in ready-made pieces that already come with working code — instantly, at no cost.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Agent that writes to your rules</h3>
+          <p class="muted-p">An integrated AI agent writes code that follows your project's conventions. It needs Claude Code installed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REQUIREMENTS ============ -->
+  <section class="section--white" id="requirements">
+    <div class="wrap section">
+      <p class="eyebrow">Requirements</p>
+      <h2 class="h2 h1--left mt-30" style="font-size:clamp(26px,3.6vw,34px)">What you need to run it</h2>
+      <div class="grid grid-2" style="margin-top:40px">
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Runs on your machine</h3>
+          <p class="muted-p">It's a desktop app that runs entirely on your own computer, with a Python core doing the real work. Nothing lives in the cloud.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Build from source</h3>
+          <p class="muted-p">A Rust toolchain is required to build. The <code>.app</code> and <code>.dmg</code> are built on macOS.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">For the agent half</h3>
+          <p class="muted-p">The integrated code-writing agent needs Claude Code installed on your machine.</p>
+        </div>
+        <div class="card-sm">
+          <h3 class="h3" style="font-size:19px;font-weight:600">Free and open source</h3>
+          <p class="muted-p">MIT-licensed, version 0.1.0, 578 tests and a single gate that CI runs. No account, no cloud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUICK START ============ -->
+  <section class="section" id="quickstart">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Quick start</p>
+          <h2 class="h2 h1--left" style="font-size:clamp(26px,3.6vw,34px);margin-top:20px">Clone it and open a canvas</h2>
+          <p class="muted-p" style="max-width:460px;color:var(--t3)">Framestack is a desktop app you build from source. Grab the repository, build it with a Rust toolchain, and point it at a Python project — new or one you already have.</p>
+          <div class="bullets">
+            <div><i aria-hidden="true"></i><span>Works against an existing Python project.</span></div>
+            <div><i aria-hidden="true"></i><span>No account and no cloud — everything is local.</span></div>
+            <div><i aria-hidden="true"></i><span>Run <code>strip</code> any time to leave with plain Python.</span></div>
+          </div>
+        </div>
+        <div class="code">
+          <div class="code-bar">terminal</div>
+<pre>$ git clone https://github.com/ysz7/framestack-ai-builder
+$ cd framestack-ai-builder
+
+<span class="cm"># requires a Rust toolchain; .app / .dmg build on macOS
+# exact build steps live in the README</span>
+
+$ framestack open ./my-python-project</pre>
+        </div>
+      </div>
+      <p class="muted-p" style="margin-top:24px"><a href="https://github.com/ysz7/framestack-ai-builder#readme" style="border-bottom:1px solid var(--b3)">Read the full setup in the README →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="section--subtle">
+    <div class="wrap" style="padding-top:clamp(52px,7vw,84px);padding-bottom:clamp(52px,7vw,84px)">
+      <div class="cta">
+        <div>
+          <h2 class="h2" style="font-size:clamp(28px,4.2vw,40px);line-height:1.06">Prove your first node.</h2>
+          <p style="font-size:clamp(15.5px,1.8vw,16.5px);color:var(--t3);margin-top:14px">Open source. Run it locally in a few minutes.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+          <a class="btn btn-outline" href="index.html#faq">Read the FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div style="grid-column:span 1;min-width:200px">
+      <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="1.6" y="11.6" width="18.8" height="18.8" rx="5" stroke="#17181B" stroke-width="3"></rect><path d="M11.6 1.6h14.8a4 4 0 0 1 4 4v14.8a4 4 0 0 1-4 4H11.6a4 4 0 0 1-4-4V5.6a4 4 0 0 1 4-4z" fill="#17181B" stroke="#FAFAFA" stroke-width="3"></path></svg>
+        <span>Framestack</span>
+      </div>
+      <p class="footer-brand-note">Developer tools for AI development in Python.<br>framestackai.com</p>
+    </div>
+    <nav class="footer-col" aria-label="Product">
+      <div class="footer-head">Product</div>
+      <a href="product.html">Framestack AI Builder</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <nav class="footer-col" aria-label="Resources">
+      <div class="footer-head">Resources</div>
+      <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+      <a href="https://github.com/ysz7/framestack-ai-builder#readme">Docs</a>
+      <a href="#quickstart">Quick start</a>
+    </nav>
+    <nav class="footer-col" aria-label="Brand">
+      <div class="footer-head">Framestack</div>
+      <a href="index.html#open-source">Open source</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
+  <div class="wrap footer-copy">© 2026 Framestack · MIT licensed</div>
+</footer>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-dropdown]').forEach(function(dd){
+    var btn = dd.querySelector('[data-dropdown-toggle]');
+    function set(open){ dd.setAttribute('data-open', open); btn.setAttribute('aria-expanded', open); }
+    dd.addEventListener('mouseenter', function(){ set(true); });
+    dd.addEventListener('mouseleave', function(){ set(false); });
+    btn.addEventListener('click', function(){ set(dd.getAttribute('data-open') !== 'true'); });
+    btn.addEventListener('keydown', function(e){ if(e.key==='Escape'){ set(false); } });
+  });
+  var burger = document.querySelector('[data-burger]');
+  var mnav = document.getElementById('mobile-nav');
+  if(burger && mnav){
+    burger.addEventListener('click', function(){
+      var open = mnav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mnav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ mnav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  }
+})();
+</script>
+</body>
+</html>
