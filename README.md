@@ -1,25 +1,26 @@
 # framestackai.com
 
-Marketing site for [Framestack AI Builder](https://github.com/ysz7/framestack-ai-builder) — an
-open-source visual builder for Python AI apps where the code stays the source of truth.
+Marketing site for **Framestack AI Builder** — a macOS desktop app that is a visual editor
+over an ordinary Python project. The canvas is read from the project's folders and imports,
+and a node turns green only when the project's own tests run through that code and pass.
 
-This repository holds the website only. The builder itself lives in
-[ysz7/framestack-ai-builder](https://github.com/ysz7/framestack-ai-builder).
+This repository holds the website only.
 
 ## What's here
 
-A static site — no build step, no dependencies, no framework. Two hand-written HTML
-pages with their CSS and a few lines of JavaScript inlined.
+A static site — no build step, no dependencies, no framework. One hand-written HTML page
+with its CSS and a few lines of JavaScript inlined.
 
 ```
-index.html      landing page
-product.html    product page (canvas, node kinds, quick start)
-robots.txt      crawler rules
-sitemap.xml     URL list for search engines
-favicon.ico     favicon (16 / 32 / 48 px in one file)
-favicon.svg     scalable favicon for modern browsers
+index.html          landing page
+robots.txt          crawler rules
+sitemap.xml         URL list for search engines
+favicon.ico         favicon (16 / 32 / 48 px in one file)
+favicon.svg         scalable favicon
 apple-touch-icon.png
-assets/img/     screenshots, social preview images, logo
+assets/img/         logo and screenshots used by the page
+assets/             brand source files (logo and icon variants)
+assets/app-screenshots/  original, full-resolution app screenshots
 ```
 
 ## Running it locally
@@ -38,31 +39,37 @@ resolve when the site is served from the root of a domain.
 
 ## Images
 
-Every image reference and its expected size is documented in
-[`assets/img/README.txt`](assets/img/README.txt). Two things worth knowing before you
-swap one out:
+The page uses four files from `assets/img/`:
 
-- The `<img>` tags carry explicit `width` and `height` attributes. They set the aspect
-  ratio the browser reserves while loading, which is what keeps the page from jumping.
-  Replace a screenshot with a different aspect ratio and you must update those numbers.
-- The screenshots have a wireframe fallback: if a file is missing, an `onerror` handler
-  hides the image and reveals a CSS-drawn placeholder instead of a broken-image icon.
+| File | Size | Used for |
+| --- | --- | --- |
+| `framestack-logo.svg` | vector | header, hero and footer wordmark |
+| `app-window.png` | 2000 × 1300 | hero screenshot, also the Open Graph image |
+| `node-detail.png` | 2000 × 1167 | node-colour section |
+| `canvas-graph.png` | 2000 × 1029 | how-it-works section |
+
+The `<img>` tags carry explicit `width` and `height` attributes. They set the aspect ratio
+the browser reserves while loading, which is what keeps the page from jumping. Replace a
+screenshot with a different aspect ratio and you must update those numbers.
+
+The favicon, the apple-touch-icon and `assets/img/framestack-logo.svg` are derived from the
+brand files in `assets/` — `framestackai-icon.png` / `.svg` for the icons and
+`framestackai-logo-transparent.svg` for the wordmark.
 
 ## Editing
 
-Both pages are self-contained: the design tokens, the stylesheet and the scripts sit
-inside each file. The two pages share the same token block near the top of `<head>` — if
-you change a color or a font there, change it in both.
+The page is self-contained: the design tokens, the stylesheet and the scripts sit inside
+`index.html`.
 
 ## Deploying
 
 Copy the repository contents to any static host. The site expects to be served from the
-root of a domain; if you host it under a subpath, switch the three root-relative icon
-links in both pages to relative paths.
+root of a domain; if you host it under a subpath, switch the three root-relative icon links
+to relative paths.
 
 `sitemap.xml` and the `canonical` / `og:url` tags hardcode `https://framestackai.com` —
 update them if the domain changes.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). This covers the website source in this repository.

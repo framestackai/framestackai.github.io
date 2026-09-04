@@ -3,28 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Open Source AI Agent Builder for Python — Framestack</title>
-<meta name="description" content="Open-source, self-hosted visual AI agent builder for Python. Code is the source of truth, and a node turns green only when your tests prove it.">
+<title>Framestack AI Builder — a visual editor over your Python project</title>
+<meta name="description" content="A macOS app for Python AI projects. The canvas is read from your folders and imports, and a node turns green only when a test ran through that code and passed.">
 <link rel="canonical" href="https://framestackai.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#FAFAFA">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Framestack">
-<meta property="og:title" content="Open Source AI Agent Builder for Python — Framestack">
-<meta property="og:description" content="Visual AI agent builder for Python where code is the source of truth. A node turns green only when your own tests run through it and pass. Open source, MIT.">
+<meta property="og:site_name" content="Framestack AI Builder">
+<meta property="og:title" content="Framestack AI Builder — a visual editor over your Python project">
+<meta property="og:description" content="Code is the source of truth. The diagram is its reflection. A node turns green only when a test ran through that code and passed.">
 <meta property="og:url" content="https://framestackai.com/">
-<meta property="og:image" content="https://framestackai.com/assets/img/og-cover.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Framestack AI Builder canvas: a Python node graph with a proven node highlighted">
+<!-- TODO: no dedicated 1200x630 social image yet — this points at the app screenshot. See report. -->
+<meta property="og:image" content="https://framestackai.com/assets/img/app-window.png">
+<meta property="og:image:width" content="2000">
+<meta property="og:image:height" content="1300">
+<meta property="og:image:alt" content="Framestack AI Builder on macOS: a project canvas with an agent, a RAG system, a service and external dependencies">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Open Source AI Agent Builder for Python — Framestack">
-<meta name="twitter:description" content="Visual AI agent builder for Python where code is the source of truth. A node turns green only when your tests prove it. Open source, MIT.">
-<meta name="twitter:image" content="https://framestackai.com/assets/img/og-cover.png">
+<meta name="twitter:title" content="Framestack AI Builder — a visual editor over your Python project">
+<meta name="twitter:description" content="Code is the source of truth. The diagram is its reflection. A node turns green only when a test ran through that code and passed.">
+<meta name="twitter:image" content="https://framestackai.com/assets/img/app-window.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,107 +265,18 @@ table.cmp{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Framestack",
-  "url": "https://framestackai.com/",
-  "logo": "https://framestackai.com/assets/img/framestack-logo.png",
-  "description": "Framestack builds developer tools for AI development in Python. Its first product, Framestack AI Builder, is an open-source visual builder where code is the source of truth.",
-  "sameAs": [
-    "https://github.com/ysz7/framestack-ai-builder"
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Framestack AI Builder",
   "applicationCategory": "DeveloperApplication",
-  "applicationSubCategory": "Visual AI agent builder",
   "operatingSystem": "macOS",
-  "softwareVersion": "0.1.0",
-  "url": "https://framestackai.com/builder",
-  "downloadUrl": "https://github.com/ysz7/framestack-ai-builder",
-  "description": "Open-source, self-hosted visual AI agent builder for Python. The node graph is a two-way projection of real, runnable code; a node turns green only when the project's own tests run through it and pass.",
-  "license": "https://opensource.org/licenses/MIT",
-  "isAccessibleForFree": true,
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
+  "url": "https://framestackai.com/",
+  "description": "A desktop app for developers who write Python AI applications. It is a visual editor over an ordinary Python project: the canvas is read from the project's folders and imports, and a node turns green only when the project's own tests run through that code and pass.",
   "publisher": {
     "@type": "Organization",
     "name": "Framestack",
-    "url": "https://framestackai.com/"
+    "url": "https://framestackai.com/",
+    "logo": "https://framestackai.com/assets/img/framestack-logo.svg"
   }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://framestackai.com/" }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is Framestack AI Builder?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Framestack AI Builder is an open-source, self-hosted visual AI agent builder for Python. You draw agents, RAG pipelines, FastAPI services and MCP servers as a node graph that is a two-way projection of real code — edit either side and the other follows. It is MIT-licensed and runs as a desktop app." }
-    },
-    {
-      "@type": "Question",
-      "name": "How is this different from Langflow, Flowise or n8n?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Unlike Langflow, Flowise or n8n, Framestack keeps your code as the single source of truth instead of a JSON flow document. There is no manifest and no graph file; the graph is read from your Python. A step is only marked proven once your own tests run through it and pass." }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it lock me into a runtime?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. What you build is an ordinary Python project you can deploy anywhere. One command removes Framestack from it completely, leaving code that behaves exactly the same. Delete Framestack and your project keeps running — there's no vendor lock-in and nothing to migrate off." }
-    },
-    {
-      "@type": "Question",
-      "name": "What does it mean when a node is green?",
-      "acceptedAnswer": { "@type": "Answer", "text": "It means that part of your app has really run and worked — your own tests went through it and passed. If something can't be checked, it stays grey instead, so “couldn't check” never turns into “looks good.”" }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use my existing Python project?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Framestack reads your existing Python and lays it out as a graph, so you can point it at a project you already have. Edits you make on the canvas are written straight back into your code, touching only what you changed. You can keep editing by hand in any editor too." }
-    },
-    {
-      "@type": "Question",
-      "name": "Which frameworks are supported?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Framestack supports eight node families: FastAPI services and routing, LangGraph agents and state, RAG pipelines (chunking, embedding, retrieval, generation), MCP servers and clients, Celery queues and background tasks, Docker and Compose, databases, and vector stores — 27 node kinds in total. Support covers what is in the registry." }
-    },
-    {
-      "@type": "Question",
-      "name": "Is it free and open source?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Framestack is free and open source under the MIT license. It is currently version 0.1.0, with 578 tests and a single gate that CI runs. Building from source needs a Rust toolchain, and the .app and .dmg are built on macOS. It is a desktop application." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need an API key or an account?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No account is required — Framestack has no cloud, no sign-in and no hosting, and runs locally as a desktop app. For the AI-agent half that writes code to your project's rules, you need Claude Code installed on your machine." }
-    },
-    {
-      "@type": "Question",
-      "name": "Where does my code live?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Your code lives locally, in your own repository. Framestack has no manifest and no graph file — the Python in your project is the source of truth. Nothing is uploaded to a cloud, and the built application deploys as a normal Python project on infrastructure you control." }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I edit the code by hand?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. It's ordinary Python, so you can edit it by hand in any editor. Framestack writes canvas changes straight back into your code, and it notices if the two ever fall out of step — so your hand edits and canvas edits stay in sync." }
-    }
-  ]
 }
 </script>
 </head>
@@ -373,36 +285,22 @@ table.cmp{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
 <!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html" aria-label="Framestack home">
-      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="1.6" y="11.6" width="18.8" height="18.8" rx="5" stroke="#17181B" stroke-width="3"></rect><path d="M11.6 1.6h14.8a4 4 0 0 1 4 4v14.8a4 4 0 0 1-4 4H11.6a4 4 0 0 1-4-4V5.6a4 4 0 0 1 4-4z" fill="#17181B" stroke="#FAFAFA" stroke-width="3"></path></svg>
-      <span>Framestack</span>
+    <a class="brand" href="index.html" aria-label="Framestack AI Builder home">
+      <img src="assets/img/framestack-logo.svg" width="143" height="23" alt="Framestack AI Builder" decoding="async">
     </a>
 
     <nav class="nav" aria-label="Primary">
-      <div class="dropdown" data-dropdown>
-        <button type="button" aria-expanded="false" aria-haspopup="true" data-dropdown-toggle>
-          Products <span class="chev" aria-hidden="true">▾</span>
-        </button>
-        <div class="dropdown-panel" role="menu">
-          <a class="dd-item" href="product.html" role="menuitem">
-            <span class="dd-ico" aria-hidden="true"><i></i></span>
-            <span>
-              <span class="dd-title">Framestack AI Builder</span>
-              <span class="dd-desc">Visual builder for Python where code is the source of truth.</span>
-            </span>
-          </a>
-          <div class="dd-more">MORE SOON</div>
-        </div>
-      </div>
+      <a href="#difference">The difference</a>
       <a href="#how">How it works</a>
-      <a href="#faq">FAQ</a>
-      <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+      <a href="#features">Features</a>
+      <a href="#local">Local</a>
     </nav>
 
     <div class="spacer"></div>
 
     <div class="header-cta">
-      <a class="btn btn-primary btn-sm" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+      <!-- TODO: confirm the public repository URL (taken from README.md); there is no download URL yet. -->
+      <a class="btn btn-primary btn-sm" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
     </div>
 
     <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" data-burger>
@@ -411,12 +309,13 @@ table.cmp{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
   </div>
 
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-    <a href="product.html">Framestack AI Builder<span class="m-sub">Visual builder for Python</span></a>
+    <a href="#difference">The difference</a>
     <a href="#how">How it works</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
+    <a href="#features">Features</a>
+    <a href="#local">Local</a>
     <div style="margin-top:24px">
-      <a class="btn btn-primary" style="display:block;text-align:center" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+      <!-- TODO: confirm the public repository URL. -->
+      <a class="btn btn-primary" style="display:block;text-align:center" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
     </div>
   </nav>
 </header>
@@ -425,375 +324,257 @@ table.cmp{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
 
   <!-- ============ HERO ============ -->
   <section class="wrap section--tight center">
-    <p class="eyebrow">Framestack AI Builder</p>
-    <h1 class="h1 mt-30">The open source AI&nbsp;agent builder where code is the source of truth</h1>
-    <p class="lead maxw-640 mt-lead" style="margin-inline:auto">Most visual builders show a step as green the moment you add it. Framestack only lights a step up once your app has really run through it and worked — proof it works, not just that it exists.</p>
+    <img src="assets/img/framestack-logo.svg" width="248" height="40" alt="Framestack AI Builder"
+         style="margin:0 auto" decoding="async">
+    <h1 class="h1 mt-30">Code is the source of truth. The diagram is its reflection.</h1>
+    <p class="lead maxw-640 mt-lead" style="margin-inline:auto">A visual editor over an ordinary Python project. The canvas is read from your folders and imports: change the code and the picture changes, move a card and the code stays exactly as it was.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
+      <!-- TODO: confirm the public repository URL; add a macOS download link once there is one. -->
+      <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
       <a class="btn btn-outline" href="#how">See how it works</a>
-      <span class="hero-note">open source · self-hosted · MIT</span>
+      <span class="hero-note">macOS desktop app</span>
     </div>
   </section>
 
   <!-- ============ HERO SCREENSHOT ============ -->
   <section class="wrap" style="padding-bottom:clamp(80px,10vw,132px)">
-    <!-- IMAGE: Framestack canvas — a Python node graph with the Agent node proven (highlighted) | 1200x800 | alt="Framestack AI Builder canvas showing a Python node graph with a proven Agent node highlighted" -->
     <figure class="frame">
       <div class="frame-bar">
         <span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="frame-path">flows / support-agent</span>
+        <span class="frame-path">Framestack AI Builder</span>
         <span class="spacer"></span>
-        <span class="frame-run">run</span>
+        <span class="frame-run">observe</span>
       </div>
-      <img class="shot" src="assets/img/hero-canvas.png"
-           width="1200" height="589" loading="eager" fetchpriority="high" decoding="async"
-           alt="Framestack AI Builder canvas showing a Python node graph with a proven Agent node highlighted"
-           onerror="this.style.display='none';this.nextElementSibling.hidden=false">
-      <div class="canvas" hidden role="img" aria-label="Wireframe of the Framestack canvas: a POST /chat route feeding a retriever, an agent and an MCP tool, returning a response">
-        <div class="canvas-inner">
-          <div class="node" style="position:absolute;left:56px;top:168px;width:176px">
-            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">POST /chat</span></div>
-            <div class="node-body"><span class="bar" style="width:76%"></span><span class="bar" style="width:52%"></span></div>
-          </div>
-          <div style="position:absolute;left:232px;top:194px;width:72px;height:1px;background:#B4B8C0"></div>
-          <div class="node" style="position:absolute;left:304px;top:76px;width:190px">
-            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">Retriever</span><span class="node-meta">pgvector</span></div>
-            <div class="node-body"><span class="bar" style="width:84%"></span><span class="bar" style="width:46%"></span></div>
-          </div>
-          <div class="node node--active" style="position:absolute;left:304px;top:194px;width:190px">
-            <div class="node-head"><span class="dot dot--ink" aria-hidden="true"></span><span class="node-name">Agent</span><span class="node-meta">proven</span></div>
-            <div class="node-body"><span class="bar" style="width:92%;background:#E6E8EA"></span><span class="bar" style="width:64%"></span><span class="bar" style="width:38%"></span></div>
-          </div>
-          <div class="node" style="position:absolute;left:304px;top:310px;width:190px">
-            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">MCP tool</span><span class="node-meta">search</span></div>
-            <div class="node-body"><span class="bar" style="width:58%"></span></div>
-          </div>
-          <div style="position:absolute;left:398px;top:137px;width:1px;height:57px;background:#B4B8C0"></div>
-          <div style="position:absolute;left:398px;top:264px;width:1px;height:46px;background:#B4B8C0"></div>
-          <div style="position:absolute;left:494px;top:220px;width:74px;height:1px;background:#B4B8C0"></div>
-          <div class="node" style="position:absolute;left:568px;top:194px;width:176px">
-            <div class="node-head"><span class="dot" aria-hidden="true"></span><span class="node-name">Response</span></div>
-            <div class="node-body"><span class="bar" style="width:70%"></span></div>
-          </div>
-          <span class="ph-note">wireframe — drop the product screenshot here</span>
-        </div>
-      </div>
+      <img class="shot" src="assets/img/app-window.png"
+           width="2000" height="1300" loading="eager" fetchpriority="high" decoding="async"
+           alt="Framestack AI Builder on macOS: a canvas with an api service, an agent with two tools, a rag system, and openai, ollama and postgres dependencies">
     </figure>
   </section>
 
-  <!-- ============ PROBLEM ============ -->
-  <section class="section--white" id="problem">
-    <div class="wrap section center">
-      <p class="eyebrow">The problem</p>
-      <h2 class="h2 h2--center mt-30">Everything's green. Nothing's proven.</h2>
-      <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">You wire up a flow, every box lights up, and you still can't tell if it actually runs. Then you export it and get tangled code nobody wants to own. The picture and the real app drift apart — and you're the one who finds out in production.</p>
-    </div>
-  </section>
-
-  <!-- ============ HOW IT WORKS ============ -->
-  <section class="section" id="how">
-    <div class="wrap">
-      <div class="center">
-        <p class="eyebrow">How it works</p>
-        <h2 class="h2 h2--center mt-30">Code writes the graph. Tests color it.</h2>
-      </div>
-      <div class="grid grid-2" style="margin-top:clamp(44px,5vw,64px)">
-        <article class="card card--lift card-pad">
-          <p class="tag">Step 1</p>
-          <h3 class="h3" style="margin-top:14px">Start from real Python</h3>
-          <p class="muted-p">Describe your app in plain Python — or let the built-in AI write it for you. It's just your code, with nothing exotic to learn.</p>
-        </article>
-        <article class="card card--lift card-pad">
-          <p class="tag">Step 2</p>
-          <h3 class="h3" style="margin-top:14px">The canvas draws itself</h3>
-          <p class="muted-p">Framestack reads your code and lays it out as a graph for you. There's no extra file to keep in sync — your code is the project.</p>
-        </article>
-        <article class="card card--lift card-pad">
-          <p class="tag">Step 3</p>
-          <h3 class="h3" style="margin-top:14px">Edit whichever side you like</h3>
-          <p class="muted-p">Drag things on the canvas and your code updates. Edit the code and the canvas follows. The two never drift apart.</p>
-        </article>
-        <article class="card card--lift card-pad">
-          <p class="tag">Step 4</p>
-          <h3 class="h3" style="margin-top:14px">You see what actually works</h3>
-          <p class="muted-p">Run your app and Framestack lights up every part that did its job. What you see is proof — not decoration.</p>
-        </article>
-      </div>
-
-      <div style="margin-top:36px">
-        <figure class="frame">
-          <div class="frame-bar">
-            <span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="frame-path">code ⇄ graph</span>
-          </div>
-          <div class="split" style="padding:clamp(28px,4vw,44px)">
-            <div class="code">
-              <div class="code-bar">flows/support_agent.py</div>
-<pre>from framestack import bp
-
-@bp.route("POST /chat")
-def chat(msg: str) -&gt; str:
-    <span class="cm"># retriever → agent → mcp:search</span>
-    ...</pre>
-            </div>
-            <div class="stack-sm">
-              <div class="node node--active"><div class="node-head"><span class="dot dot--ink"></span><span class="node-name">Agent</span><span class="node-meta">proven</span></div><div class="node-body"><span class="bar" style="width:88%"></span><span class="bar" style="width:56%"></span></div></div>
-              <div class="node"><div class="node-head"><span class="dot"></span><span class="node-name">Retriever</span></div><div class="node-body"><span class="bar" style="width:70%"></span></div></div>
-              <p class="row-desc" style="flex:0">The graph is a two-way projection: edit either side and the other follows.</p>
-            </div>
-          </div>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROOF (central) ============ -->
-  <section class="section--white" id="proof">
+  <!-- ============ THE DIFFERENCE ============ -->
+  <section class="section--white" id="difference">
     <div class="wrap section">
       <div class="center">
-        <p class="eyebrow">Proof, not guesswork</p>
-        <h2 class="h2 h2--center mt-30">You can trust what's done</h2>
-        <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">This is the heart of Framestack. A part of your app is only marked proven once it has really run and done its job. If something can't be checked, it stays unmarked — so you never get a signal that lies.</p>
+        <p class="eyebrow">The difference</p>
+        <h2 class="h2 h2--center mt-30">Green because a test passed, not because it exists</h2>
+        <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">In Langflow, Flowise, n8n, Dify and the rest, the source of truth is the tool's own flow file and the code is an export. A node there is green because you drew it. Here it works the other way round.</p>
+      </div>
+      <div class="grid grid-3" style="margin-top:clamp(44px,5vw,64px)">
+        <article class="card card--lift card-pad">
+          <p class="tag">Your project</p>
+          <h3 class="h3" style="margin-top:14px">It stays plain Python</h3>
+          <p class="muted-p">Delete Framestack and the project keeps running. Nothing of the builder is left in your code: no decorators, no imports, no manifest.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">The canvas</p>
+          <h3 class="h3" style="margin-top:14px">The diagram is derived</h3>
+          <p class="muted-p">It comes from the directory structure and the imports. No model takes part in that, so every read gives the same result.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">The color</p>
+          <h3 class="h3" style="margin-top:14px">The color is a test result</h3>
+          <p class="muted-p">A node's color comes from a real run of the project's tests. Not "reviewed" — a test went into this code and passed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THREE STATES ============ -->
+  <section class="section" id="states">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">Node color</p>
+        <h2 class="h2 h2--center mt-30">Three states, one question</h2>
       </div>
 
       <div class="states">
         <div class="state-card">
           <span class="dot dot--ink" style="width:9px;height:9px" aria-hidden="true"></span>
-          <p class="state-tag">Proven — green</p>
-          <p class="state-desc">Your app ran through this part and it worked. That's the only way it counts as proven.</p>
+          <p class="state-tag">Green</p>
+          <p class="state-desc">A test went into this code and passed.</p>
         </div>
         <div class="state-card">
           <span class="dot" style="width:9px;height:9px" aria-hidden="true"></span>
-          <p class="state-tag">Not proven yet</p>
-          <p class="state-desc">Nothing has run through this part yet. It isn't broken — it just hasn't proven itself, so it makes no promises.</p>
+          <p class="state-tag">Grey</p>
+          <p class="state-desc">No test has reached this code yet.</p>
         </div>
         <div class="state-card state-card--skip">
           <span class="dot dot--hollow" style="width:9px;height:9px" aria-hidden="true"></span>
-          <p class="state-tag">Couldn't check</p>
-          <p class="state-desc">Something got in the way of checking this part, so it stays grey. “Couldn't check” never becomes “looks good.”</p>
+          <p class="state-tag">Red</p>
+          <p class="state-desc">A test went in and failed.</p>
         </div>
       </div>
 
-      <p class="lead maxw-560" style="margin:clamp(40px,5vw,56px) auto 0;text-align:center;color:var(--t4)">So when you hand your project to a teammate or push it live, "done" isn't a hope — it's the parts you've watched work with your own eyes.</p>
-    </div>
-  </section>
+      <p class="lead maxw-560" style="margin:clamp(36px,4vw,48px) auto 0;text-align:center;color:var(--t4)">External things — the database, Ollama, model providers — carry a separate set of colors, because "we reached the database" is a different question from "this code is proven by a test".</p>
 
-  <!-- ============ WHAT YOU CAN BUILD ============ -->
-  <section class="section" id="build">
-    <div class="wrap">
-      <div class="center">
-        <p class="eyebrow">What you can build</p>
-        <h2 class="h2 h2--center mt-30">27 node kinds across 8 families</h2>
-        <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">Everything in the registry compiles to real, runnable Python. Support covers what is listed here — nothing is faked in.</p>
-      </div>
-      <div class="rows">
-        <div class="row">
-          <div class="row-name">FastAPI</div>
-          <div class="row-desc">Stand up an HTTP service with routers and routes, and configure it through settings.</div>
-          <div class="row-kinds">service · routers · routes · settings</div>
-        </div>
-        <div class="row">
-          <div class="row-name">LangGraph</div>
-          <div class="row-desc">Build an agent as a reasoning loop over shared state, wired to nodes and tools.</div>
-          <div class="row-kinds">agent · state · nodes · tools · settings</div>
-        </div>
-        <div class="row">
-          <div class="row-name">RAG</div>
-          <div class="row-desc">Compose a retrieval pipeline from its stages, each a node you can inspect and run.</div>
-          <div class="row-kinds">pipeline · chunking · embedding · retrieval · generation</div>
-        </div>
-        <div class="row">
-          <div class="row-name">MCP</div>
-          <div class="row-desc">Expose your own MCP server and tools, or consume a third-party server as a node.</div>
-          <div class="row-kinds">your server · your tools · consumed server</div>
-        </div>
-        <div class="row">
-          <div class="row-name">Queues &amp; background work</div>
-          <div class="row-desc">Run work off the request path with Celery workers and tasks.</div>
-          <div class="row-kinds">Celery workers · background tasks</div>
-        </div>
-        <div class="row">
-          <div class="row-name">Containers</div>
-          <div class="row-desc">Package and orchestrate the app with Docker and Compose.</div>
-          <div class="row-kinds">Docker · Compose</div>
-        </div>
-        <div class="row">
-          <div class="row-name">Database</div>
-          <div class="row-desc">Attach a relational database the rest of the graph can read and write.</div>
-          <div class="row-kinds">database</div>
-        </div>
-        <div class="row">
-          <div class="row-name">Vector store</div>
-          <div class="row-desc">Attach a vector store for embeddings and retrieval.</div>
-          <div class="row-kinds">vector store</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ COMPARISON ============ -->
-  <section class="section--white" id="compare">
-    <div class="wrap section">
-      <div class="center">
-        <p class="eyebrow">How it compares</p>
-        <h2 class="h2 h2--center mt-30">Same canvas idea, different mechanics</h2>
-        <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">A Langflow, Flowise, n8n or Dify alternative for developers — with one big difference in what you actually end up owning.</p>
-      </div>
-      <div class="table-wrap">
-        <table class="cmp">
-          <caption>How other visual builders and Framestack compare on what your project really is, adding a step, what "done" means, leaving the tool, and lock-in.</caption>
-          <thead>
-            <tr>
-              <th scope="col">&nbsp;</th>
-              <th scope="col" class="them">Other visual builders</th>
-              <th scope="col" class="us">Framestack</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">What your project is</th>
-              <td class="them">A diagram in the tool's own format.</td>
-              <td class="us">Your real Python code.</td>
-            </tr>
-            <tr>
-              <th scope="row">Adding a step</th>
-              <td class="them">Drops another box on the diagram.</td>
-              <td class="us">Adds real code you can read and run.</td>
-            </tr>
-            <tr>
-              <th scope="row">What “done” means</th>
-              <td class="them">You added the box.</td>
-              <td class="us">Your app ran through it and it worked.</td>
-            </tr>
-            <tr>
-              <th scope="row">If you stop using it</th>
-              <td class="them">It stops working without the tool.</td>
-              <td class="us">Your project keeps running on its own.</td>
-            </tr>
-            <tr>
-              <th scope="row">Lock-in</th>
-              <td class="them">You're tied to their platform.</td>
-              <td class="us">None — it's just a Python project.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ NO LOCK-IN ============ -->
-  <section class="section" id="no-lockin">
-    <div class="wrap">
-      <div class="split">
-        <div>
-          <p class="eyebrow">No lock-in</p>
-          <h2 class="h2 h1--left" style="font-size:clamp(28px,4.4vw,42px);margin-top:20px">Deploy your project anywhere. It doesn't need Framestack.</h2>
-          <p class="muted-p" style="max-width:460px;color:var(--t3)">What you build is a normal Python project — not something trapped inside our tool. Ship it to your own servers, hand it to your team, or stop using Framestack entirely. It keeps running without us.</p>
-          <div class="bullets">
-            <div><i aria-hidden="true"></i><span>It's your code from start to finish — no hidden runtime.</span></div>
-            <div><i aria-hidden="true"></i><span>Runs anywhere Python runs: your servers, your keys, your data.</span></div>
-            <div><i aria-hidden="true"></i><span>Walk away from Framestack and nothing breaks.</span></div>
+      <div style="margin-top:clamp(36px,5vw,56px)">
+        <figure class="frame">
+          <div class="frame-bar">
+            <span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="frame-path">agent · rag · dependencies</span>
           </div>
-        </div>
-        <div class="code">
-          <div class="code-bar">your project</div>
-<pre><span class="cm"># it's just Python</span>
-$ python -m app     <span class="cm"># runs on its own — no Framestack needed</span></pre>
-        </div>
+          <img class="shot" src="assets/img/node-detail.png"
+               width="2000" height="1167" loading="lazy" decoding="async"
+               alt="Close-up of the canvas: an agent card, a rag card with index and search, and dependency cards for ollama and postgres carrying their own reachability colors">
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============ HONEST CAVEATS ============ -->
-  <section class="section--white" id="caveats">
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section--white" id="how">
     <div class="wrap section">
       <div class="center">
-        <p class="eyebrow">Honest caveats</p>
-        <h2 class="h2 h2--center mt-30">Where it is today</h2>
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2 h2--center mt-30">The code writes the canvas. The tests color it.</h2>
+      </div>
+      <div class="grid grid-2" style="margin-top:clamp(44px,5vw,64px)">
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 1</p>
+          <h3 class="h3" style="margin-top:14px">Write the code, or ask for it</h3>
+          <p class="muted-p">You write Python yourself, or ask the agent in the chat. Either way what lands in the project is ordinary Python.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 2</p>
+          <h3 class="h3" style="margin-top:14px">The app reads the project</h3>
+          <p class="muted-p">Framestack walks the folders and the imports. There is no second file to keep in sync with your code.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 3</p>
+          <h3 class="h3" style="margin-top:14px">The canvas appears</h3>
+          <p class="muted-p">Systems, their tools, routes, files, containers and dependencies. Every link on the canvas is an import in the code.</p>
+        </article>
+        <article class="card card--lift card-pad">
+          <p class="tag">Step 4</p>
+          <h3 class="h3" style="margin-top:14px">Observe colors it</h3>
+          <p class="muted-p">Observe runs the project's tests and colors the canvas by what actually happened during the run.</p>
+        </article>
+      </div>
+
+      <div style="margin-top:clamp(36px,5vw,56px)">
+        <figure class="frame">
+          <div class="frame-bar">
+            <span class="frame-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="frame-path">test-python</span>
+          </div>
+          <img class="shot" src="assets/img/canvas-graph.png"
+               width="2000" height="1029" loading="lazy" decoding="async"
+               alt="The canvas of a Python project: an api service, an agent with a calculator tool and a rag search tool, a rag system, and openai, ollama and postgres dependencies">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">What it does</p>
+        <h2 class="h2 h2--center mt-30">A place to work, not a diagram</h2>
       </div>
       <div class="grid grid-3" style="margin-top:44px">
         <div class="card-sm">
-          <p class="tag">It's early</p>
-          <p class="muted-p">Framestack is version 0.1.0 and open source. It's well-tested (578 tests), but still young — expect a few rough edges.</p>
+          <p class="tag">Canvas</p>
+          <p class="muted-p">Systems, subsystems, tools, routes, files, containers and dependencies, laid out from the project itself.</p>
         </div>
         <div class="card-sm">
-          <p class="tag">Does what's in the box</p>
-          <p class="muted-p">It supports the building blocks in its library — agents, RAG, APIs, tools and more. It's not “every framework under the sun.”</p>
+          <p class="tag">Agent chat</p>
+          <p class="muted-p">The one way to change the project's structure from the app. You ask, the agent writes Python by the convention.</p>
         </div>
         <div class="card-sm">
-          <p class="tag">A desktop app you build</p>
-          <p class="muted-p">It's a desktop app you build from source (you'll need Rust), and the Mac builds are made on macOS.</p>
+          <p class="tag">Block palette</p>
+          <p class="muted-p">A block does not draw a node. It hands the agent a task, and the node appears because code appeared.</p>
         </div>
         <div class="card-sm">
-          <p class="tag">The AI helper</p>
-          <p class="muted-p">The built-in AI that writes code for you needs Claude Code installed on your machine.</p>
+          <p class="tag">Observe</p>
+          <p class="muted-p">Runs the project's tests and colors the canvas. A run that went out to the network does not count.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Node panel</p>
+          <p class="muted-p">Open a card and everything about it is there: settings, files, the last verdict, run, status, cost.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Settings</p>
+          <p class="muted-p">The panel edits real settings fields in the Python file, one line at a time — and says when <code>.env</code> overrides the value.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Run</p>
+          <p class="muted-p">Runs one system by calling its entry point in the project's own interpreter. Execution order lives in Python.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Deploy</p>
+          <p class="muted-p"><code>docker compose up</code> for the project, with the log in the app. Close the app and it shuts down what it raised.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Single service</p>
+          <p class="muted-p">A dependency backed by a container gets Start and Stop on its card. Postgres comes up without leaving the app.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Terminal</p>
+          <p class="muted-p">A slide-out panel with an ordinary terminal in the project directory.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Local models</p>
+          <p class="muted-p">Ollama: the models already on this machine, and pulling a new one straight from the panel.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">MCP</p>
+          <p class="muted-p">Connect an MCP server and check it. Connected means it answered with its list of tools, and the app shows how many.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Run cost</p>
+          <p class="muted-p">Tokens and money counted per run, with history. When a model has no price, you get tokens and no sum.</p>
+        </div>
+        <div class="card-sm">
+          <p class="tag">Database</p>
+          <p class="muted-p">Reads from the code what the project stores: the tables, where they are declared, what it connects to.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ OPEN SOURCE ============ -->
-  <section class="section" id="open-source">
-    <div class="wrap center">
-      <p class="eyebrow">Open source</p>
-      <h2 class="h2 h2--center mt-30">Free, MIT, and yours to read</h2>
-      <p class="lead maxw-560 mt-lead" style="margin-inline:auto;color:var(--t4)">Framestack AI Builder is MIT-licensed. Read the source, run it locally, open an issue, send a pull request. No account, no cloud, no pricing page.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
-        <a class="btn btn-outline" href="product.html">Explore the builder</a>
-        <span class="hero-note">Free · MIT</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FAQ ============ -->
-  <section class="section--white" id="faq">
+  <!-- ============ LOCAL ============ -->
+  <section class="section--white" id="local">
     <div class="wrap section">
-      <div class="center">
-        <p class="eyebrow">FAQ</p>
-        <h2 class="h2 h2--center mt-30">Questions engineers ask</h2>
+      <div class="split">
+        <div>
+          <p class="eyebrow">Local</p>
+          <h2 class="h2 h1--left" style="font-size:clamp(28px,4.4vw,42px);margin-top:20px">It runs on your machine</h2>
+          <p class="muted-p" style="max-width:460px;color:var(--t3)">Everything happens on the machine in front of you. Nothing leaves the network except what your own code sends.</p>
+          <div class="bullets">
+            <div><i aria-hidden="true"></i><span>Local models through Ollama, listed and pulled from the panel.</span></div>
+            <div><i aria-hidden="true"></i><span>No cloud, no sync — your machine or your server.</span></div>
+            <div><i aria-hidden="true"></i><span>Nothing starts on its own: containers, environments and installs happen on a click.</span></div>
+          </div>
+        </div>
+        <div class="hexes" style="margin-top:0">
+          <span class="hex">Ollama</span>
+          <span class="hex">your machine</span>
+          <span class="hex">your server</span>
+        </div>
       </div>
-      <div class="faq">
-        <details>
-          <summary>What is Framestack AI Builder?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">Framestack AI Builder is an open-source, self-hosted visual AI agent builder for Python. You draw agents, RAG pipelines, FastAPI services and MCP servers as a node graph that is a two-way projection of real code — edit either side and the other follows. It is MIT-licensed and runs as a desktop app.</p>
-        </details>
-        <details>
-          <summary>How is this different from Langflow, Flowise or n8n?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">Unlike Langflow, Flowise or n8n, Framestack keeps your code as the single source of truth instead of a JSON flow document. There is no manifest and no graph file; the graph is read from your Python. A step is only marked proven once your own tests run through it and pass.</p>
-        </details>
-        <details>
-          <summary>Does it lock me into a runtime?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">No. What you build is an ordinary Python project you can deploy anywhere. One command removes Framestack from it completely, leaving code that behaves exactly the same. Delete Framestack and your project keeps running — there's no vendor lock-in and nothing to migrate off.</p>
-        </details>
-        <details>
-          <summary>What does it mean when a node is green?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">It means that part of your app has really run and worked — your own tests went through it and passed. If something can't be checked, it stays grey instead, so “couldn't check” never turns into “looks good.”</p>
-        </details>
-        <details>
-          <summary>Can I use my existing Python project?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">Yes. Framestack reads your existing Python and lays it out as a graph, so you can point it at a project you already have. Edits you make on the canvas are written straight back into your code, touching only what you changed. You can keep editing by hand in any editor too.</p>
-        </details>
-        <details>
-          <summary>Which frameworks are supported?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">Framestack supports eight node families: FastAPI services and routing, LangGraph agents and state, RAG pipelines (chunking, embedding, retrieval, generation), MCP servers and clients, Celery queues and background tasks, Docker and Compose, databases, and vector stores — 27 node kinds in total. Support covers what is in the registry.</p>
-        </details>
-        <details>
-          <summary>Is it free and open source?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">Yes. Framestack is free and open source under the MIT license. It is currently version 0.1.0, with 578 tests and a single gate that CI runs. Building from source needs a Rust toolchain, and the .app and .dmg are built on macOS. It is a desktop application.</p>
-        </details>
-        <details>
-          <summary>Do I need an API key or an account?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">No account is required — Framestack has no cloud, no sign-in and no hosting, and runs locally as a desktop app. For the AI-agent half that writes code to your project's rules, you need Claude Code installed on your machine.</p>
-        </details>
-        <details>
-          <summary>Where does my code live?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">Your code lives locally, in your own repository. Framestack has no manifest and no graph file — the Python in your project is the source of truth. Nothing is uploaded to a cloud, and the built application deploys as a normal Python project on infrastructure you control.</p>
-        </details>
-        <details>
-          <summary>Can I edit the code by hand?<span class="mk" aria-hidden="true">+</span></summary>
-          <p class="ans">Yes. It's ordinary Python, so you can edit it by hand in any editor. Framestack writes canvas changes straight back into your code, and it notices if the two ever fall out of step — so your hand edits and canvas edits stay in sync.</p>
-        </details>
+    </div>
+  </section>
+
+  <!-- ============ WHO IT'S FOR / WHAT IT DOESN'T DO ============ -->
+  <section class="section" id="scope">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Who it's for</p>
+          <h2 class="h2 h1--left" style="font-size:clamp(28px,4.4vw,42px);margin-top:20px">For engineers who read Python</h2>
+          <p class="muted-p" style="max-width:460px;color:var(--t3)">People building AI applications in Python: agents, RAG systems, APIs and workers. Not a tool for building without code.</p>
+        </div>
+        <div>
+          <p class="eyebrow">What it doesn't do</p>
+          <div class="bullets" style="margin-top:26px">
+            <div><i aria-hidden="true"></i><span>The diagram cannot be executed as a diagram. Code is what runs.</span></div>
+            <div><i aria-hidden="true"></i><span>A link cannot be drawn with the mouse. A link is an import, and an import is a code change.</span></div>
+            <div><i aria-hidden="true"></i><span>There is no project file, manifest or format of ours. Remove the app and the project remains.</span></div>
+            <div><i aria-hidden="true"></i><span>Nothing runs by itself. A container, an environment, an install — only when you press.</span></div>
+            <div><i aria-hidden="true"></i><span>No cloud and no sync.</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -803,12 +584,12 @@ $ python -m app     <span class="cm"># runs on its own — no Framestack needed<
     <div class="wrap" style="padding-top:clamp(52px,7vw,84px);padding-bottom:clamp(52px,7vw,84px)">
       <div class="cta">
         <div>
-          <h2 class="h2" style="font-size:clamp(28px,4.2vw,40px);line-height:1.06">Start with a blank canvas.</h2>
-          <p style="font-size:clamp(15.5px,1.8vw,16.5px);color:var(--t3);margin-top:14px">Open source. Run it locally in a few minutes.</p>
+          <h2 class="h2" style="font-size:clamp(28px,4.2vw,40px);line-height:1.06">The diagram can't lie about your code.</h2>
+          <p style="font-size:clamp(15.5px,1.8vw,16.5px);color:var(--t3);margin-top:14px">It's made of it.</p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">Get started</a>
-          <a class="btn btn-outline" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
+          <!-- TODO: confirm the public repository URL; swap for a macOS download link when one exists. -->
+          <a class="btn btn-primary" href="https://github.com/ysz7/framestack-ai-builder">View on GitHub</a>
         </div>
       </div>
     </div>
@@ -821,30 +602,28 @@ $ python -m app     <span class="cm"># runs on its own — no Framestack needed<
   <div class="wrap footer-grid">
     <div style="grid-column:span 1;min-width:200px">
       <div class="brand">
-        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="1.6" y="11.6" width="18.8" height="18.8" rx="5" stroke="#17181B" stroke-width="3"></rect><path d="M11.6 1.6h14.8a4 4 0 0 1 4 4v14.8a4 4 0 0 1-4 4H11.6a4 4 0 0 1-4-4V5.6a4 4 0 0 1 4-4z" fill="#17181B" stroke="#FAFAFA" stroke-width="3"></path></svg>
-        <span>Framestack</span>
+        <img src="assets/img/framestack-logo.svg" width="143" height="23" alt="Framestack AI Builder" loading="lazy" decoding="async">
       </div>
-      <p class="footer-brand-note">Developer tools for AI development in Python.<br>framestackai.com</p>
+      <p class="footer-brand-note">A visual editor over your Python project.<br>framestackai.com</p>
     </div>
-    <nav class="footer-col" aria-label="Product">
-      <div class="footer-head">Product</div>
-      <a href="product.html">Framestack AI Builder</a>
+    <nav class="footer-col" aria-label="Page">
+      <div class="footer-head">On this page</div>
+      <a href="#difference">The difference</a>
       <a href="#how">How it works</a>
-      <a href="#faq">FAQ</a>
+      <a href="#features">Features</a>
+    </nav>
+    <nav class="footer-col" aria-label="More">
+      <div class="footer-head">More</div>
+      <a href="#local">Local</a>
+      <a href="#scope">Who it's for</a>
     </nav>
     <nav class="footer-col" aria-label="Resources">
       <div class="footer-head">Resources</div>
+      <!-- TODO: confirm the public repository URL. -->
       <a href="https://github.com/ysz7/framestack-ai-builder">GitHub</a>
-      <a href="https://github.com/ysz7/framestack-ai-builder#readme">Docs</a>
-      <a href="product.html#quickstart">Quick start</a>
-    </nav>
-    <nav class="footer-col" aria-label="Brand">
-      <div class="footer-head">Framestack</div>
-      <a href="#open-source">Open source</a>
-      <a href="product.html">Products</a>
     </nav>
   </div>
-  <div class="wrap footer-copy">© 2026 Framestack · MIT licensed</div>
+  <div class="wrap footer-copy">© 2026 Framestack</div>
 </footer>
 
 <script>
